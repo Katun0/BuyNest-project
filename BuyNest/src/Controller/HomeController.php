@@ -1,3 +1,4 @@
+
 #[Route('/home', name: 'app_home')]
 public function home(): Response
 {

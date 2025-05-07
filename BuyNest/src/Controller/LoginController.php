@@ -26,7 +26,7 @@ class LoginController extends AbstractController
             }
         }
 
-        return $this->render('templates/login.html.twig', [
+        return $this->render('login/login.html.twig', [
             'error' => $error,
         ]);
     }
