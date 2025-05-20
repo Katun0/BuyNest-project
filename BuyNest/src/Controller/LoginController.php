@@ -2,32 +2,37 @@
 
 namespace App\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class LoginController extends AbstractController
 {
     #[Route('/login', name: 'app_login')]
-    public function login(Request $request): Response
+    public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        $error = null;
-
-        if ($request->isMethod('POST')) {
-            $username = $request->request->get('username');
-            $password = $request->request->get('password');
-
-            // Exemplo simples, autenticação fictícia
-            if ($username === 'admin' && $password === '1234') {
-                return $this->redirectToRoute('app_home'); // depois cria essa rota
-            } else {
-                $error = 'Usuário ou senha inválidos.';
-            }
+        // Verifica se já está logado
+        if ($this->getUser()) {
+            return $this->redirectToRoute('app_home');
         }
 
+        // Pega o erro de login se houver
+        $error = $authenticationUtils->getLastAuthenticationError();
+        
+        // Pega o último nome de usuário digitado
+        $lastUsername = $authenticationUtils->getLastUsername();
+
         return $this->render('login/login.html.twig', [
+            'last_username' => $lastUsername,
             'error' => $error,
         ]);
+    }
+
+    #[Route('/logout', name: 'app_logout')]
+    public function logout(): void
+    {
+        // O logout é manipulado pelo sistema de segurança
+        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 }
