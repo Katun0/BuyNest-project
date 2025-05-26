@@ -19,6 +19,8 @@ security:
             form_login:
                 login_path: app_login #apontando para a rota
                 check_path: app_login
+                username_parameter: '_email' # indica que o tipo do campo username é email
+                password_parameter: '_password' # indica que o tipo do campo password é password
             logout:
                 path: app_logout  #confirma o endpoind
 

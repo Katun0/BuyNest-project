@@ -17,8 +17,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 180)]
-    private ?string $email = null;
+    #[ORM\Column(type: 'string', unique: true)]
+    private string $email;
 
     /**
      * @var list<string> The user roles
@@ -30,7 +30,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
-    private ?string $password = null;
+    private string $password;
+
+    // src/Entity/User.php
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $name = null;
+    
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+        return $this;
+    }
 
     public function getId(): ?int
     {

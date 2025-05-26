@@ -50,7 +50,7 @@
                     <p class="text-gray-600">Faça login para acessar sua conta</p>
                 </div>
                 
-                <form method="post" class="space-y-6">
+                <form action="{{ path('app_login') }}" method="post" class="space-y-6">
                     {% if error %}
                         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                             {{ error.messageKey|trans(error.messageData, 'security') }}
@@ -64,7 +64,7 @@
                         <input 
                             type="email" 
                             value="{{ last_username }}" 
-                            name="email" 
+                            name="_email" 
                             placeholder="Seu e-mail" 
                             class="input-field pl-10 w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500"
                             required
@@ -78,7 +78,7 @@
                         </div>
                         <input 
                             type="password" 
-                            name="password" 
+                            name="_password" 
                             placeholder="Sua senha" 
                             class="input-field pl-10 w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500"
                             required
@@ -94,22 +94,8 @@
                 
                 <div class="mt-6 text-center">
                     <p class="text-gray-600">Não tem uma conta? 
-                        <a href="#" id="show-register" class="text-indigo-600 font-medium hover:text-indigo-500">Registre-se</a>
+                        <a href="{{ path('app_register') }}" id="show-register" class="text-indigo-600 font-medium hover:text-indigo-500">Registre-se</a>
                     </p>
-                </div>
-                
-                <div class="mt-6 border-t border-gray-200 pt-6">
-                    <div class="flex justify-center space-x-4">
-                        <button class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 hover:bg-blue-200 transition">
-                            <i class="fab fa-facebook-f"></i>
-                        </button>
-                        <button class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600 hover:bg-red-200 transition">
-                            <i class="fab fa-google"></i>
-                        </button>
-                        <button class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition">
-                            <i class="fab fa-github"></i>
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -124,41 +110,43 @@
                     <p class="text-gray-600">Preencha os campos para se registrar</p>
                 </div>
                 
-                <form class="space-y-6">
+                <form action="{{ path('app_register') }}" method="post" class="space-y-6">
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <i class="fas fa-user text-gray-400"></i>
                         </div>
-                        <input type="text" placeholder="Seu nome" class="input-field pl-10 w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500">
+                        <input type="text" name="name" placeholder="Seu nome" class="input-field pl-10 w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500" required>
                     </div>
                     
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <i class="fas fa-envelope text-gray-400"></i>
                         </div>
-                        <input type="email" placeholder="Seu e-mail" class="input-field pl-10 w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500">
+                        <input type="email" name="email" placeholder="Seu e-mail" class="input-field pl-10 w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500" required>
                     </div>
                     
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <i class="fas fa-lock text-gray-400"></i>
                         </div>
-                        <input type="password" placeholder="Sua senha" class="input-field pl-10 w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500">
+                        <input type="password" name="password" placeholder="Sua senha" class="input-field pl-10 w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500" required>
                     </div>
                     
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <i class="fas fa-lock text-gray-400"></i>
                         </div>
-                        <input type="password" placeholder="Confirme sua senha" class="input-field pl-10 w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500">
+                        <input type="password" name="confirm_password" placeholder="Confirme sua senha" class="input-field pl-10 w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500" required>
                     </div>
                     
                     <div class="flex items-center">
-                        <input id="terms" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                        <input id="terms" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" required>
                         <label for="terms" class="ml-2 block text-sm text-gray-700">
                             Eu concordo com os <a href="#" class="text-indigo-600 hover:text-indigo-500">Termos de Serviço</a>
                         </label>
                     </div>
+                    
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('register') }}">
                     
                     <button type="submit" class="w-full bg-gradient-to-r from-purple-500 to-pink-600 text-white py-3 px-4 rounded-lg font-semibold hover:opacity-90 transition duration-300 shadow-lg">
                         Registrar
@@ -167,15 +155,11 @@
                 
                 <div class="mt-6 text-center">
                     <p class="text-gray-600">Já tem uma conta? 
-                        <a href="#" id="show-login" class="text-indigo-600 font-medium hover:text-indigo-500">Faça login</a>
+                        <a href="{{ path('app_login') }}" id="show-login" class="text-indigo-600 font-medium hover:text-indigo-500">Faça login</a>
                     </p>
                 </div>
             </div>
         </div>
-        
-        <!-- Elemento decorativo -->
-        <div class="absolute -top-20 -right-20 w-40 h-40 bg-purple-300 rounded-full opacity-20 mix-blend-overlay floating"></div>
-        <div class="absolute -bottom-20 -left-20 w-40 h-40 bg-indigo-300 rounded-full opacity-20 mix-blend-overlay floating" style="animation-delay: 1s;"></div>
     </div>
 
     <script>
@@ -185,6 +169,14 @@
             const showRegister = document.getElementById('show-register');
             const showLogin = document.getElementById('show-login');
             
+            // Se estivermos na página de registro, mostrar o card de registro
+            if (window.location.pathname === '{{ path('app_register') }}') {
+                loginCard.classList.remove('card-visible');
+                loginCard.classList.add('card-hidden');
+                registerCard.classList.remove('card-hidden');
+                registerCard.classList.add('card-visible');
+            }
+            
             showRegister.addEventListener('click', function(e) {
                 e.preventDefault();
                 loginCard.classList.remove('card-visible');
@@ -192,6 +184,9 @@
                 
                 registerCard.classList.remove('card-hidden');
                 registerCard.classList.add('card-visible');
+                
+                // Atualiza a URL sem recarregar a página
+                history.pushState(null, null, '{{ path('app_register') }}');
             });
             
             showLogin.addEventListener('click', function(e) {
@@ -201,6 +196,9 @@
                 
                 loginCard.classList.remove('card-hidden');
                 loginCard.classList.add('card-visible');
+                
+                // Atualiza a URL sem recarregar a página
+                history.pushState(null, null, '{{ path('app_login') }}');
             });
         });
     </script>
