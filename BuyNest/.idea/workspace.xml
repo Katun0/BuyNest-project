@@ -5,22 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ff23ff7f-4c0a-4c72-9547-c1f4999482a3" name="Changes" comment="Criação das entidades referentes a país, estado, cidade e fornecedor">
-      <change afterPath="$PROJECT_DIR$/.idea/commandlinetools/Symfony_28_05_2025_09_22.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/commandlinetools/schemas/frameworkDescriptionVersion1.1.4.xsd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20250526194621.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20250528124613.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/City.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/Country.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/FederalUnit.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/Supplier.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/CityRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/CountryRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/FederalUnitRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/SupplierRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env.dev" beforeDir="false" afterPath="$PROJECT_DIR$/.env.dev" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/City.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/City.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Supplier.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Supplier.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +21,19 @@
     <execution />
   </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$/.." source="origin/Surdi" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -44,6 +46,16 @@
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Katun0/BuyNest-project.git&quot;,
     &quot;accountId&quot;: &quot;9304efab-8cc0-4613-a6eb-c6f032149342&quot;
+  },
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
+    },
+    &quot;owner&quot;: &quot;Katun0&quot;,
+    &quot;repository&quot;: &quot;BuyNest-project&quot;
   }
 }</component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe">
@@ -181,6 +193,9 @@
       <path value="$PROJECT_DIR$/vendor/composer" />
     </include_path>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -232,8 +247,19 @@
       <workItem from="1748001344311" duration="8000" />
       <workItem from="1748001383520" duration="1009000" />
       <workItem from="1748259095125" duration="4004000" />
-      <workItem from="1748434962198" duration="5676000" />
+      <workItem from="1748434962198" duration="6845000" />
+      <workItem from="1748521185075" duration="3488000" />
+      <workItem from="1748954321404" duration="1482000" />
     </task>
+    <task id="LOCAL-00001" summary="Criação das entidades referentes a país, estado, cidade e fornecedor">
+      <option name="closed" value="true" />
+      <created>1748461962545</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1748461962545</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

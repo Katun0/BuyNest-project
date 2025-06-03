@@ -29,7 +29,7 @@ class FederalUnit
 
     #[ORM\ManyToOne(inversedBy: 'federalUnits')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Country $country_id = null;
+    private ?Country $country = null;
 
     /**
      * @var Collection<int, City>
@@ -97,12 +97,12 @@ class FederalUnit
 
     public function getCountryId(): ?Country
     {
-        return $this->country_id;
+        return $this->country;
     }
 
-    public function setCountryId(?Country $country_id): static
+    public function setCountryId(?Country $country): static
     {
-        $this->country_id = $country_id;
+        $this->country = $country;
 
         return $this;
     }

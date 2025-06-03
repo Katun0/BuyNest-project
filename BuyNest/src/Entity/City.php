@@ -34,9 +34,16 @@ class City
     #[ORM\OneToMany(targetEntity: Supplier::class, mappedBy: 'city')]
     private Collection $suppliers;
 
+    /**
+     * @var Collection<int, Store>
+     */
+    #[ORM\OneToMany(targetEntity: Store::class, mappedBy: 'city')]
+    private Collection $stores;
+
     public function __construct()
     {
         $this->suppliers = new ArrayCollection();
+        $this->stores = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -116,6 +123,36 @@ class City
             // set the owning side to null (unless already changed)
             if ($supplier->getCity() === $this) {
                 $supplier->setCity(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Store>
+     */
+    public function getStores(): Collection
+    {
+        return $this->stores;
+    }
+
+    public function addStore(Store $store): static
+    {
+        if (!$this->stores->contains($store)) {
+            $this->stores->add($store);
+            $store->setCity($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStore(Store $store): static
+    {
+        if ($this->stores->removeElement($store)) {
+            // set the owning side to null (unless already changed)
+            if ($store->getCity() === $this) {
+                $store->setCity(null);
             }
         }
 

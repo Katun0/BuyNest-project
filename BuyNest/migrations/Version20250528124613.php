@@ -39,13 +39,13 @@ final class Version20250528124613 extends AbstractMigration
             DROP INDEX IDX_2D5B02349CA8CE00
         SQL);
         $this->addSql(<<<'SQL'
-            ALTER TABLE city RENAME COLUMN federal_unit_id TO federal_unit_id_id
+            ALTER TABLE city RENAME COLUMN federal_unit_id TO federal_unit_id
         SQL);
         $this->addSql(<<<'SQL'
-            ALTER TABLE city ADD CONSTRAINT FK_2D5B02349CA8CE00 FOREIGN KEY (federal_unit_id_id) REFERENCES federal_unit (id) NOT DEFERRABLE INITIALLY IMMEDIATE
+            ALTER TABLE city ADD CONSTRAINT FK_2D5B02349CA8CE00 FOREIGN KEY (federal_unit_id) REFERENCES federal_unit (id) NOT DEFERRABLE INITIALLY IMMEDIATE
         SQL);
         $this->addSql(<<<'SQL'
-            CREATE INDEX IDX_2D5B02349CA8CE00 ON city (federal_unit_id_id)
+            CREATE INDEX IDX_2D5B02349CA8CE00 ON city (federal_unit_id)
         SQL);
         $this->addSql(<<<'SQL'
             ALTER TABLE federal_unit DROP CONSTRAINT FK_A8FFC0D4D8A48BBD
@@ -54,13 +54,13 @@ final class Version20250528124613 extends AbstractMigration
             DROP INDEX IDX_A8FFC0D4D8A48BBD
         SQL);
         $this->addSql(<<<'SQL'
-            ALTER TABLE federal_unit RENAME COLUMN country_id TO country_id_id
+            ALTER TABLE federal_unit RENAME COLUMN country_id TO country_id
         SQL);
         $this->addSql(<<<'SQL'
-            ALTER TABLE federal_unit ADD CONSTRAINT FK_A8FFC0D4D8A48BBD FOREIGN KEY (country_id_id) REFERENCES country (id) NOT DEFERRABLE INITIALLY IMMEDIATE
+            ALTER TABLE federal_unit ADD CONSTRAINT FK_A8FFC0D4D8A48BBD FOREIGN KEY (country_id) REFERENCES country (id) NOT DEFERRABLE INITIALLY IMMEDIATE
         SQL);
         $this->addSql(<<<'SQL'
-            CREATE INDEX IDX_A8FFC0D4D8A48BBD ON federal_unit (country_id_id)
+            CREATE INDEX IDX_A8FFC0D4D8A48BBD ON federal_unit (country_id)
         SQL);
     }
 
@@ -83,7 +83,7 @@ final class Version20250528124613 extends AbstractMigration
             DROP INDEX idx_a8ffc0d4d8a48bbd
         SQL);
         $this->addSql(<<<'SQL'
-            ALTER TABLE federal_unit RENAME COLUMN country_id_id TO country_id
+            ALTER TABLE federal_unit RENAME COLUMN country_id TO country_id
         SQL);
         $this->addSql(<<<'SQL'
             ALTER TABLE federal_unit ADD CONSTRAINT fk_a8ffc0d4d8a48bbd FOREIGN KEY (country_id) REFERENCES country (id) NOT DEFERRABLE INITIALLY IMMEDIATE
@@ -98,7 +98,7 @@ final class Version20250528124613 extends AbstractMigration
             DROP INDEX idx_2d5b02349ca8ce00
         SQL);
         $this->addSql(<<<'SQL'
-            ALTER TABLE city RENAME COLUMN federal_unit_id_id TO federal_unit_id
+            ALTER TABLE city RENAME COLUMN federal_unit_id TO federal_unit_id
         SQL);
         $this->addSql(<<<'SQL'
             ALTER TABLE city ADD CONSTRAINT fk_2d5b02349ca8ce00 FOREIGN KEY (federal_unit_id) REFERENCES federal_unit (id) NOT DEFERRABLE INITIALLY IMMEDIATE

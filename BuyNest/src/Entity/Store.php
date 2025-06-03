@@ -2,14 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\SupplierRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Repository\StoreRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: SupplierRepository::class)]
-class Supplier
+#[ORM\Entity(repositoryClass: StoreRepository::class)]
+class Store
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -22,7 +20,7 @@ class Supplier
     #[ORM\Column(length: 255)]
     private ?string $company = null;
 
-    #[ORM\Column(length: 14)]
+    #[ORM\Column(length: 18)]
     private ?string $cpf_cnpj = null;
 
     #[ORM\Column(length: 11, nullable: true)]
@@ -31,13 +29,13 @@ class Supplier
     #[ORM\Column(length: 8, nullable: true)]
     private ?string $postal_code = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $address = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $address_number = null;
 
-    #[ORM\ManyToOne(inversedBy: 'suppliers')]
+    #[ORM\ManyToOne(inversedBy: 'stores')]
     #[ORM\JoinColumn(nullable: false)]
     private ?City $city = null;
 
@@ -46,17 +44,6 @@ class Supplier
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $last_modified = null;
-
-    /**
-     * @var Collection<int, Product>
-     */
-    #[ORM\OneToMany(targetEntity: Product::class, mappedBy: 'supplier')]
-    private Collection $products;
-
-    public function __construct()
-    {
-        $this->products = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -128,7 +115,7 @@ class Supplier
         return $this->address;
     }
 
-    public function setAddress(string $address): static
+    public function setAddress(?string $address): static
     {
         $this->address = $address;
 
@@ -179,36 +166,6 @@ class Supplier
     public function setLastModified(?\DateTimeImmutable $last_modified): static
     {
         $this->last_modified = $last_modified;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Product>
-     */
-    public function getProducts(): Collection
-    {
-        return $this->products;
-    }
-
-    public function addProduct(Product $product): static
-    {
-        if (!$this->products->contains($product)) {
-            $this->products->add($product);
-            $product->setSupplier($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProduct(Product $product): static
-    {
-        if ($this->products->removeElement($product)) {
-            // set the owning side to null (unless already changed)
-            if ($product->getSupplier() === $this) {
-                $product->setSupplier(null);
-            }
-        }
 
         return $this;
     }
