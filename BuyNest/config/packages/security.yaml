@@ -14,15 +14,8 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            lazy: true  # Carrega apenas quando necessário
+            lazy: true
             provider: app_user_provider
-            form_login:
-                login_path: app_login #apontando para a rota
-                check_path: app_login
-                username_parameter: '_email' # indica que o tipo do campo username é email
-                password_parameter: '_password' # indica que o tipo do campo password é password
-            logout:
-                path: app_logout  #confirma o endpoind
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -33,9 +26,8 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-    - { path: ^/login, roles: PUBLIC_ACCESS } # Deixa acessivel pubicamente
-    - { path: ^/register, roles: PUBLIC_ACCESS }
-    - { path: ^/, roles: IS_AUTHENTICATED_FULLY } #exige autenticação
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:
     security:
