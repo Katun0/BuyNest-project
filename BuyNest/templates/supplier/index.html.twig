@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BN - Fornecedores{% endblock %}
+
+{% block StyleSheets %}
+{% endblock %}
+
+{% block body %}
+    <h1> {{ tittle }} </h1>
+
+    <div class="absolute top-4 left-4">
+        <img src="https://www.php.net/images/logos/php-elephant.svg" alt="PHP Elephant Logo" class="w-16 h-16">
+    </div>
+    <form>
+        {{ form_start(form) }}
+
+        {{ form_end(form) }}
+    </form>
+
+{% endblock %}

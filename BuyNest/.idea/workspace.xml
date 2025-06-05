@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff23ff7f-4c0a-4c72-9547-c1f4999482a3" name="Changes" comment="Atualização do banco com as entidades principais modeladas (ainda em desenvolvimento)">
+    <list default="true" id="ff23ff7f-4c0a-4c72-9547-c1f4999482a3" name="Changes" comment="Ajustada a lógica de registro e adição do UserForm ao template de login">
       <change beforePath="$PROJECT_DIR$/.env.dev" beforeDir="false" afterPath="$PROJECT_DIR$/.env.dev" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes/framework.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes/framework.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/controller.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Store.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Store.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login/login.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,24 +202,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "PHPUnit.Main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Surdi",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "C:/Users/Joao_/OneDrive/Área de Trabalho/Faculdade/Prog 3/CRUD-Borsa/BuyNest-project/BuyNest",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.general",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;PHPUnit.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Surdi&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Joao_/OneDrive/Área de Trabalho/Faculdade/Prog 3/CRUD-Borsa/BuyNest-project/BuyNest&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Main" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml.dist" scope="XML" use_alternative_configuration_file="true" />
@@ -255,7 +248,9 @@
       <workItem from="1748259095125" duration="4004000" />
       <workItem from="1748434962198" duration="6845000" />
       <workItem from="1748521185075" duration="3488000" />
-      <workItem from="1748954321404" duration="16042000" />
+      <workItem from="1748954321404" duration="16876000" />
+      <workItem from="1748988272350" duration="2606000" />
+      <workItem from="1749077937797" duration="4617000" />
     </task>
     <task id="LOCAL-00001" summary="Criação das entidades referentes a país, estado, cidade e fornecedor">
       <option name="closed" value="true" />
@@ -273,7 +268,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748956944571</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Ajustada a lógica de registro e adição do UserForm ao template de login">
+      <option name="closed" value="true" />
+      <created>1748982699349</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1748982699349</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -293,6 +296,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Criação das entidades referentes a país, estado, cidade e fornecedor" />
     <MESSAGE value="Atualização do banco com as entidades principais modeladas (ainda em desenvolvimento)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Atualização do banco com as entidades principais modeladas (ainda em desenvolvimento)" />
+    <MESSAGE value="Ajustada a lógica de registro e adição do UserForm ao template de login" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajustada a lógica de registro e adição do UserForm ao template de login" />
   </component>
 </project>
