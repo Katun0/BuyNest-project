@@ -53,3 +53,4 @@ class UserForm extends AbstractType
         ]);
     }
 }
+// formType
