@@ -21,6 +21,7 @@ class UserForm extends AbstractType
 
             ->add('password', PasswordType::class, [
                 'mapped' => false,
+                'toggle' => true,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Por favor, insira uma senha',

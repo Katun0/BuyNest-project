@@ -5,16 +5,23 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <link rel="icon" type="image/png" href="https://www.php.net/images/logos/php-elephant.svg">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="icon" type="image/png" href="https://www.php.net/images/logos/new-php-logo.svg">
+
+        {% block importmap %}
+            {{ importmap('app') }}
+        {% endblock %}
+
         {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
         {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
+            {{ encore_entry_link_tags('app') }}
         {% endblock %}
+
     </head>
-    <body class="bg-gradient-to-br from-indigo-900 to-purple-800 min-h-screen flex items-center justify-center p-4">
+
+    <body class="bg-gradient-to-br from-indigo-900 to-purple-800 min-h-screen">
         {% block body %}
         {% endblock %}
     </body>

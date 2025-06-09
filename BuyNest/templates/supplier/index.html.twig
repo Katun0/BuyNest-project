@@ -3,18 +3,219 @@
 {% block title %}BN - Fornecedores{% endblock %}
 
 {% block StyleSheets %}
+
 {% endblock %}
 
 {% block body %}
-    <h1> {{ tittle }} </h1>
 
-    <div class="absolute top-4 left-4">
-        <img src="https://www.php.net/images/logos/php-elephant.svg" alt="PHP Elephant Logo" class="w-16 h-16">
-    </div>
-    <form>
+    <form method="post" class="space-y-6">
         {{ form_start(form) }}
+        {{ form_errors(form) }}
 
+        <h1 class="text-xl font-bold mb-4">Cadastro de Fornecedor</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {{ form_row(form.name, {
+                'label': 'Nome:',
+                'attr': {
+                    'placeholder': 'Informe o Nome',
+                    'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500'
+                }
+            }) }}
+
+            {{ form_row(form.company, {
+                'label': 'Razão Social:',
+                'attr': {
+                    'placeholder': 'Informe a Razão Social',
+                    'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500'
+                }
+            }) }}
+
+            {{ form_row(form.cpf_cnpj, {
+                'label': 'CPF ou CPNJ:',
+                'attr': {
+                    'placeholder': 'Informe o CPF ou CNPJ da empresa',
+                    'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500'
+                }
+            }) }}
+
+            {{ form_row(form.phone, {
+                'label': 'Contato:',
+                'attr': {
+                    'placeholder': 'Padrão (0XX)XXXX-XXXX',
+                    'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500'
+                }
+            }) }}
+
+            {{ form_row(form.postal_code, {
+                'label': 'Código Postal:',
+                'attr': {
+                    'placeholder': 'Padrão XXXXX-XXX',
+                    'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500'
+                }
+            }) }}
+
+            {{ form_row(form.address, {
+                'label': 'Endereço',
+                'attr': {
+                    'placeholder': 'Informe o endereço',
+                    'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500'
+                }
+            }) }}
+
+            {{ form_row(form.address_number, {
+                'label': 'Número do Endereço',
+                'attr': {
+                    'placeholder': 'Número da rua',
+                    'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500'
+                }
+            }) }}
+
+            {{ form_row(form.city, {
+                'label': 'Cidade',
+                'attr': {
+                    'placeholder': 'Selecione a cidade',
+                    'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500'
+                }
+            }) }}
+        </div>
+
+        <div class="flex items-center space-x-4">
+            <label class="text-sm font-medium text-black-700">Ativo</label>
+            <label class="relative inline-flex items-center cursor-pointer">
+                {{ form_widget(form.active, {
+                    'attr': {
+                        'class': 'sr-only peer'
+                    }
+                }) }}
+                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-500 rounded-full peer dark:bg-gray-700 peer-checked:bg-blue-600 transition-all duration-300"></div>
+                <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform duration-300 peer-checked:translate-x-full"></div>
+            </label>
+        </div>
+
+
+        <div class="flex justify-between mt-6">
+            <div class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                 {{ form_widget(form.submit) }}
+            </div>
+        </div>
+
+        {{ form_rest(form) }}
         {{ form_end(form) }}
     </form>
+
+
+    <h2 class="text-xl font-semibold my-6">Lista de Fornecedores</h2>
+
+    <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200 border border-gray-300">
+            <thead class="bg-gray-100">
+            <tr>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">ID</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Nome</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Razão Social</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">CPF/CNPJ</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Telefone</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">CEP</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Endereço</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Número</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Cidade</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Ativo</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Ações</th>
+            </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+            {% for supplier in suppliers %}
+                <tr class="hover:bg-gray-50">
+                    <td class="px-4 py-2 text-sm">{{ supplier.id }}</td>
+                    <td class="px-4 py-2 text-sm">{{ supplier.name }}</td>
+                    <td class="px-4 py-2 text-sm">{{ supplier.company }}</td>
+                    <td class="px-4 py-2 text-sm">{{ supplier.CpfCnpj }}</td>
+                    <td class="px-4 py-2 text-sm">{{ supplier.phone }}</td>
+                    <td class="px-4 py-2 text-sm">{{ supplier.PostalCode }}</td>
+                    <td class="px-4 py-2 text-sm">{{ supplier.address }}</td>
+                    <td class="px-4 py-2 text-sm">{{ supplier.AddressNumber }}</td>
+                    <td class="px-4 py-2 text-sm">{{ supplier.city.name }}</td>
+                    <td class="px-4 py-2 text-s m">{{ supplier.active ? 'Sim' : 'Não' }}</td>
+                    <td class="px-4 py-2 text-sm">
+                        <button type="button"
+                                data-supplier-id="{{ supplier.id }}">
+                        Editar
+                        </button>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div id="editModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <div class="mt-3">
+                <div class="flex justify-between items-center pb-3">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">Editar Fornecedor</h3>
+                    <button onclick="closeEditModal()" class="text-gray-400 hover:text-gray-500">
+                        <span class="text-2xl">&times;</span>
+                    </button>
+                </div>
+                <div id="modalContent">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block javascripts %}
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Adicionar listeners para todos os botões de edição
+                const editButtons = document.querySelectorAll('.edit-button');
+                editButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const supplierId = this.getAttribute('data-supplier-id');
+                        openEditModal(supplierId);
+                    });
+                });
+
+                // Adicionar listener para fechar o modal
+                const modal = document.getElementById('editModal');
+                if (modal) {
+                    modal.addEventListener('click', function(e) {
+                        if (e.target === this) {
+                            closeEditModal();
+                        }
+                    });
+                }
+            });
+
+            function openEditModal(supplierId) {
+                const modal = document.getElementById('editModal');
+                if (modal) {
+                    modal.classList.remove('hidden');
+
+                    // Carregar o formulário via AJAX
+                    fetch(`/supplier/${supplierId}/edit-form`)
+                        .then(response => response.text())
+                        .then(html => {
+                            const modalContent = document.getElementById('modalContent');
+                            if (modalContent) {
+                                modalContent.innerHTML = html;
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Erro ao carregar o formulário:', error);
+                        });
+                }
+            }
+
+            function closeEditModal() {
+                const modal = document.getElementById('editModal');
+                if (modal) {
+                    modal.classList.add('hidden');
+                }
+            }
+        </script>
+
+    {% endblock %}
+
 
 {% endblock %}
