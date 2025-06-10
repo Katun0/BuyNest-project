@@ -38,7 +38,7 @@ class SupplierForm extends AbstractType
                 'constraints' => [
                     new Length([
                         'min' => 10,
-                        'max' => 11,
+                        'max' => 20,
                         'minMessage' => 'O telefone deve ter no mínimo {{ limit }} caracteres',
                         'maxMessage' => 'O telefone deve ter no máximo {{ limit }} caracteres',
                     ])

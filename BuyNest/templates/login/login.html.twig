@@ -40,6 +40,15 @@
 </head>
 
 {%block body %}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="flash-message flash-{{ label }} mb-4 p-4 rounded-lg {% if label == 'success' %}bg-green-100 text-green-700{% else %}bg-red-100 text-red-700{% endif %}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+
     <body class="bg-gradient-to-br from-indigo-900 to-purple-800 min-h-screen flex items-center justify-center p-4">
     <div class="relative w-full max-w-md">
         {% block loginCard %}
@@ -115,7 +124,7 @@
                         <p class="text-gray-600">Preencha os campos para se registrar</p>
                     </div>
 
-                    <form method="post" class="space-y-6">
+                    <form method="POST" class="space-y-6">
                         {{ form_start(form) }}
 
                         {{ form_errors(form) }}
@@ -173,6 +182,7 @@
                         <button type="submit" class="w-full bg-gradient-to-r from-purple-500 to-pink-600 text-white py-3 px-4 rounded-lg font-semibold hover:opacity-90 transition duration-300 shadow-lg">
                             Registrar
                         </button>
+
                         {{ form_rest(form) }}
 
                         {{ form_end(form) }}

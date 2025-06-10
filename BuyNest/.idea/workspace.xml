@@ -4,30 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff23ff7f-4c0a-4c72-9547-c1f4999482a3" name="Changes" comment="Tela para cadastro de fornecedor">
-      <change afterPath="$PROJECT_DIR$/src/Components/ProductFormComponent.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/supplier/edit_form.html.twig.php" afterDir="false" />
+    <list default="true" id="ff23ff7f-4c0a-4c72-9547-c1f4999482a3" name="Changes" comment="Ajuste de dependências para utilização do stimulus e symfony UX">
       <change beforePath="$PROJECT_DIR$/.env.dev" beforeDir="false" afterPath="$PROJECT_DIR$/.env.dev" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/bootstrap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/controllers.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/controllers.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/importmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/importmap.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LoginController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/SupplierController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SupplierController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Inventory.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Inventory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Supplier.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Supplier.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Form/SupplierForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/SupplierForm.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Form/UserForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/UserForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/login/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login/login.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/supplier/edit_form.html.twig.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/supplier/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/supplier/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -317,6 +303,8 @@
       <workItem from="1749248269954" duration="5713000" />
       <workItem from="1749468922201" duration="9052000" />
       <workItem from="1749479920661" duration="3003000" />
+      <workItem from="1749496482280" duration="5281000" />
+      <workItem from="1749555106942" duration="6748000" />
     </task>
     <task id="LOCAL-00001" summary="Criação das entidades referentes a país, estado, cidade e fornecedor">
       <option name="closed" value="true" />
@@ -350,7 +338,23 @@
       <option name="project" value="LOCAL" />
       <updated>1749122977246</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Ajuste de dependências para utilização do stimulus e symfony UX">
+      <option name="closed" value="true" />
+      <created>1749496525618</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1749496525618</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Ajuste de dependências para utilização do stimulus e symfony UX">
+      <option name="closed" value="true" />
+      <created>1749496836878</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1749496836878</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -384,6 +388,7 @@
     <MESSAGE value="Atualização do banco com as entidades principais modeladas (ainda em desenvolvimento)" />
     <MESSAGE value="Ajustada a lógica de registro e adição do UserForm ao template de login" />
     <MESSAGE value="Tela para cadastro de fornecedor" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tela para cadastro de fornecedor" />
+    <MESSAGE value="Ajuste de dependências para utilização do stimulus e symfony UX" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajuste de dependências para utilização do stimulus e symfony UX" />
   </component>
 </project>
