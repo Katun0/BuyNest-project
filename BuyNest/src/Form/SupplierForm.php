@@ -27,7 +27,7 @@ class SupplierForm extends AbstractType
                 'constraints' => [
                     new Length([
                         'min' => 11,
-                        'max' => 14,
+                        'max' => 20,
                         'minMessage' => 'O CPF/CNPJ deve ter no mínimo {{ limit }} caracteres',
                         'maxMessage' => 'O CPF/CNPJ deve ter no máximo {{ limit }} caracteres',
                     ])
@@ -47,7 +47,9 @@ class SupplierForm extends AbstractType
             ->add('postal_code', TextType::class)
             ->add('address', TextType::class)
             ->add('address_number', IntegerType::class)
-            ->add('active', CheckboxType::class)
+            ->add('active', CheckboxType::class, [
+                'required' => false,
+            ])
             ->add('city', EntityType::class, [
                 'class' => City::class,
                 'choice_label' => 'name',

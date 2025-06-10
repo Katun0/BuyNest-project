@@ -75,6 +75,20 @@ final class SupplierController extends AbstractController
     }
 
 
+    #[Route('/supplier/{id}/edit-form', name: 'app_supplier_edit_form')]
+    public function editForm(Supplier $supplier): Response
+    {
+        $form = $this->createForm(SupplierForm::class, $supplier, [
+            'action' => $this->generateUrl('app_supplier_edit', ['id' => $supplier->getId()]),
+            'method' => 'POST',
+        ]);
+
+        return $this->render('supplier/_edit_form.html.twig', [
+            'form' => $form->createView(),
+            'supplier' => $supplier,
+        ]);
+    }
+
     #[Route('/supplier/{id}/edit', name: 'app_supplier_edit')]
     public function edit(
         Supplier $supplier,
@@ -93,7 +107,7 @@ final class SupplierController extends AbstractController
                     [
                         'action' => 'replace',
                         'target' => 'supplier_' . $supplier->getId(),
-                        'content' => $this->renderView('supplier/_edit_form.html.twig', [
+                        'content' => $this->renderView('supplier/_supplier_row.html.twig', [
                             'supplier' => $supplier
                         ])
                     ],
@@ -170,18 +184,6 @@ final class SupplierController extends AbstractController
         }
         return $errors;
     }
-
-    #[Route('/supplier/{id}/edit-form', name: 'supplier_edit_form', methods: ['GET'])]
-    public function editForm(Supplier $supplier): Response
-    {
-        $form = $this->createForm(SupplierForm::class, $supplier);
-
-        return $this->render('supplier/_edit_form.html.twig', [
-            'form' => $form->createView(),
-            'supplier' => $supplier
-        ]);
-    }
-
 
 
 }

@@ -1,0 +1,15 @@
+<tr id="product_{{ product.id }}" class="hover:bg-black hover:bg-opacity-25">
+    <td class="px-4 py-2 text-sm">{{ product.id }}</td>
+    <td class="px-4 py-2 text-sm">{{ product.name }}</td>
+    <td class="px-4 py-2 text-sm">{{ product.description }}</td>
+    <td class="px-4 py-2 text-sm">{{ product.category.name }}</td>
+    <td class="px-4 py-2 text-sm">{{ product.supplier.name }}</td>
+    <td class="px-4 py-2 text-sm">{{ product.active ? 'Sim' : 'Não' }}</td>
+    <td class="px-4 py-2 text-sm">
+        <button type="button"
+                class="edit-button"
+                data-product-id="{{ product.id }}">
+            Editar
+        </button>
+    </td>
+</tr>

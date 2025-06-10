@@ -4,16 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff23ff7f-4c0a-4c72-9547-c1f4999482a3" name="Changes" comment="Ajuste de dependências para utilização do stimulus e symfony UX">
-      <change beforePath="$PROJECT_DIR$/.env.dev" beforeDir="false" afterPath="$PROJECT_DIR$/.env.dev" afterDir="false" />
+    <list default="true" id="ff23ff7f-4c0a-4c72-9547-c1f4999482a3" name="Changes" comment="Edição de formuláro Supplier funcionando, adição do turbo ao projeto">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProductController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/SupplierController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SupplierController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Supplier.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Supplier.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Form/SupplierForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/SupplierForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/UserForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/UserForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login/login.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/supplier/edit_form.html.twig.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/product/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/product/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/supplier/_supplier_row.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/supplier/_supplier_row.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/supplier/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/supplier/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -304,7 +303,7 @@
       <workItem from="1749468922201" duration="9052000" />
       <workItem from="1749479920661" duration="3003000" />
       <workItem from="1749496482280" duration="5281000" />
-      <workItem from="1749555106942" duration="6748000" />
+      <workItem from="1749555106942" duration="14081000" />
     </task>
     <task id="LOCAL-00001" summary="Criação das entidades referentes a país, estado, cidade e fornecedor">
       <option name="closed" value="true" />
@@ -354,7 +353,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749496836878</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Edição de formuláro Supplier funcionando, adição do turbo ao projeto">
+      <option name="closed" value="true" />
+      <created>1749564777743</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1749564777743</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -389,6 +396,7 @@
     <MESSAGE value="Ajustada a lógica de registro e adição do UserForm ao template de login" />
     <MESSAGE value="Tela para cadastro de fornecedor" />
     <MESSAGE value="Ajuste de dependências para utilização do stimulus e symfony UX" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajuste de dependências para utilização do stimulus e symfony UX" />
+    <MESSAGE value="Edição de formuláro Supplier funcionando, adição do turbo ao projeto" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edição de formuláro Supplier funcionando, adição do turbo ao projeto" />
   </component>
 </project>
