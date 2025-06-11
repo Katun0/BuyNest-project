@@ -21,7 +21,11 @@ final class SupplierController extends AbstractController
         Request $request,
         SupplierRepository $supplierRepository
     ): Response {
-        $suppliers = $supplierRepository->findAll();
+        // Check if we should show inactive suppliers
+        $showInactive = $request->query->has('show_inactive');
+
+        // Get suppliers based on the showInactive parameter
+        $suppliers = $showInactive ? $supplierRepository->findAll() : $supplierRepository->findAllActive();
 
         $supplier = new Supplier();
         $form = $this->createForm(SupplierForm::class, $supplier);
@@ -30,6 +34,11 @@ final class SupplierController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $now = new \DateTimeImmutable();
             $supplier->setLastModified($now);
+
+            // Set new suppliers as active by default if not explicitly set
+            if ($supplier->isActive() === null) {
+                $supplier->setActive(true);
+            }
 
             $entityManager->persist($supplier);
             $entityManager->flush();
@@ -185,5 +194,26 @@ final class SupplierController extends AbstractController
         return $errors;
     }
 
+    #[Route('/supplier/toggle-inactive', name: 'app_supplier_toggle_inactive')]
+    public function toggleInactive(
+        Request $request,
+        SupplierRepository $supplierRepository
+    ): Response {
+        // Get the show_inactive parameter
+        $showInactive = $request->query->has('show_inactive');
 
+        // Get suppliers based on the showInactive parameter
+        $suppliers = $showInactive ? $supplierRepository->findAll() : $supplierRepository->findAllActive();
+
+        // Return a Turbo Stream response to update the table
+        return new TurboStreamResponse([
+            [
+                'action' => 'replace',
+                'target' => 'suppliers-table-body',
+                'content' => $this->renderView('supplier/_suppliers_table.html.twig', [
+                    'suppliers' => $suppliers
+                ])
+            ]
+        ]);
+    }
 }

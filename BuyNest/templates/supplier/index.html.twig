@@ -23,7 +23,23 @@
 
     <div id="supplier-form-errors"></div>
 
-    <h2 class="text-xl font-semibold my-6">Lista de Fornecedores</h2>
+    <div class="flex justify-between items-center my-6">
+        <h2 class="text-xl font-semibold">Lista de Fornecedores</h2>
+        <div class="flex items-center">
+            <label class="text-sm font-medium text-black-700">Mostrar Inativo </label>
+            <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox"
+                       id="show-inactive"
+                       name="show_inactive"
+                       class="sr-only peer"
+                       data-controller="supplier-inactive"
+                       {% if app.request.query.get('show_inactive') %}checked{% endif %}>
+                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-500 rounded-full peer dark:bg-gray-700 peer-checked:bg-blue-600 transition-all duration-300"></div>
+                <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform duration-300 peer-checked:translate-x-full"></div>
+            </label>
+
+        </div>
+    </div>
 
     <div class="overflow-x-auto">
         <table class="min-w-full divide-y divide-gray-200 border border-gray-300">
@@ -43,9 +59,7 @@
             </tr>
             </thead>
             <tbody id="suppliers-table-body" class="bg-white divide-y divide-gray-200">
-            {% for supplier in suppliers %}
-                {% include 'supplier/_supplier_row.html.twig' with {'supplier': supplier} %}
-            {% endfor %}
+                {% include 'supplier/_suppliers_table.html.twig' with {'suppliers': suppliers} %}
             </tbody>
         </table>
     </div>
@@ -94,6 +108,20 @@
                         if (e.target === this) {
                             closeEditModal();
                         }
+                    });
+                }
+
+                // Handle show inactive checkbox
+                const showInactiveCheckbox = document.getElementById('show-inactive');
+                if (showInactiveCheckbox) {
+                    showInactiveCheckbox.addEventListener('change', function() {
+                        const url = new URL(window.location.href);
+                        if (this.checked) {
+                            url.searchParams.set('show_inactive', '1');
+                        } else {
+                            url.searchParams.delete('show_inactive');
+                        }
+                        window.location.href = url.toString();
                     });
                 }
 

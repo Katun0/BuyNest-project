@@ -21,7 +21,11 @@ final class ProductController extends AbstractController
         Request $request,
         ProductRepository $productRepository
     ): Response {
-        $products = $productRepository->findAll();
+        $showInactive = $request->query->getBoolean('show_inactive', false);
+
+        $products = $showInactive 
+            ? $productRepository->findAll() 
+            : $productRepository->findAllActive();
 
         $product = new Product();
         $form = $this->createForm(ProductForm::class, $product);
@@ -184,5 +188,27 @@ final class ProductController extends AbstractController
             $errors[] = $error->getMessage();
         }
         return $errors;
+    }
+
+    #[Route('/product/toggle-inactive', name: 'app_product_toggle_inactive', methods: ['GET'])]
+    public function toggleInactive(
+        Request $request,
+        ProductRepository $productRepository
+    ): Response {
+        $showInactive = $request->query->getBoolean('show_inactive', false);
+
+        $products = $showInactive
+            ? $productRepository->findAll()
+            : $productRepository->findAllActive();
+
+        return new TurboStreamResponse([
+            [
+                'action' => 'replace',
+                'target' => 'products-table-body',
+                'content' => $this->renderView('product/_products_table.html.twig', [
+                    'products' => $products
+                ])
+            ]
+        ]);
     }
 }

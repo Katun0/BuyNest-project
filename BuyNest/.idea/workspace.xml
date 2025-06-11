@@ -4,12 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff23ff7f-4c0a-4c72-9547-c1f4999482a3" name="Changes" comment="Edição de formuláro Supplier funcionando, adição do turbo ao projeto">
+    <list default="true" id="ff23ff7f-4c0a-4c72-9547-c1f4999482a3" name="Changes" comment="Edição de formuláro Product funcionando, adicionado turbo para validação e atualização desse módulo">
+      <change afterPath="$PROJECT_DIR$/assets/controllers/supplier-inactive_controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProductController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/SupplierController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SupplierController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Supplier.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Supplier.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/SupplierForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/SupplierForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Store.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Store.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ProductRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ProductRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/StoreRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/StoreRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/SupplierRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/SupplierRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/product/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/product/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/supplier/_supplier_row.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/supplier/_supplier_row.html.twig" afterDir="false" />
@@ -303,7 +306,8 @@
       <workItem from="1749468922201" duration="9052000" />
       <workItem from="1749479920661" duration="3003000" />
       <workItem from="1749496482280" duration="5281000" />
-      <workItem from="1749555106942" duration="14081000" />
+      <workItem from="1749555106942" duration="16059000" />
+      <workItem from="1749642510335" duration="15460000" />
     </task>
     <task id="LOCAL-00001" summary="Criação das entidades referentes a país, estado, cidade e fornecedor">
       <option name="closed" value="true" />
@@ -361,7 +365,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749564777743</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Edição de formuláro Product funcionando, adicionado turbo para validação e atualização desse módulo">
+      <option name="closed" value="true" />
+      <created>1749582846482</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1749582846482</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -397,6 +409,7 @@
     <MESSAGE value="Tela para cadastro de fornecedor" />
     <MESSAGE value="Ajuste de dependências para utilização do stimulus e symfony UX" />
     <MESSAGE value="Edição de formuláro Supplier funcionando, adição do turbo ao projeto" />
-    <option name="LAST_COMMIT_MESSAGE" value="Edição de formuláro Supplier funcionando, adição do turbo ao projeto" />
+    <MESSAGE value="Edição de formuláro Product funcionando, adicionado turbo para validação e atualização desse módulo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edição de formuláro Product funcionando, adicionado turbo para validação e atualização desse módulo" />
   </component>
 </project>

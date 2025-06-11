@@ -1,0 +1,19 @@
+<tr id="store_{{ store.id }}" class="hover:bg-black hover:bg-opacity-25">
+    <td class="px-4 py-2 text-sm">{{ store.id }}</td>
+    <td class="px-4 py-2 text-sm">{{ store.name }}</td>
+    <td class="px-4 py-2 text-sm">{{ store.company }}</td>
+    <td class="px-4 py-2 text-sm">{{ store.CpfCnpj }}</td>
+    <td class="px-4 py-2 text-sm">{{ store.phone }}</td>
+    <td class="px-4 py-2 text-sm">{{ store.PostalCode }}</td>
+    <td class="px-4 py-2 text-sm">{{ store.address }}</td>
+    <td class="px-4 py-2 text-sm">{{ store.AddressNumber }}</td>
+    <td class="px-4 py-2 text-sm">{{ store.city.name }}</td>
+    <td class="px-4 py-2 text-sm">{{ store.active ? 'Sim' : 'Não' }}</td>
+    <td class="px-4 py-2 text-sm">
+        <button type="button"
+                class="edit-button"
+                data-store-id="{{ store.id }}">
+            Editar
+        </button>
+    </td>
+</tr>

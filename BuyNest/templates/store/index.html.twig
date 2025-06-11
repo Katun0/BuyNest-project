@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}BN - Produtos{% endblock %}
+{% block title %}BN - Lojas{% endblock %}
 
 {% block StyleSheets %}
 
@@ -17,14 +17,14 @@
         {% endfor %}
     </div>
 
-    <div id="product-form">
-        {% include 'product/_form.html.twig' with {'form': form} %}
+    <div id="store-form">
+        {% include 'store/_form.html.twig' with {'form': form} %}
     </div>
 
-    <div id="product-form-errors"></div>
+    <div id="store-form-errors"></div>
 
     <div class="flex justify-between items-center my-6">
-        <h2 class="text-xl font-semibold">Lista de Produtos</h2>
+        <h2 class="text-xl font-semibold">Lista de Lojas</h2>
         <div class="flex items-center">
             <label class="text-sm font-medium text-black-700">Mostrar Inativo </label>
             <label class="relative inline-flex items-center cursor-pointer">
@@ -41,16 +41,20 @@
             <tr>
                 <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">ID</th>
                 <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Nome</th>
-                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Descrição</th>
-                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Categoria</th>
-                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Fornecedor</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Razão Social</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">CPF/CNPJ</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Telefone</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">CEP</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Endereço</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Número</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Cidade</th>
                 <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Ativo</th>
                 <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Ações</th>
             </tr>
             </thead>
-            <tbody id="products-table-body" class="bg-white divide-y divide-gray-200">
-            {% for product in products %}
-                {% include 'product/_product_row.html.twig' with {'product': product} %}
+            <tbody id="stores-table-body" class="bg-white divide-y divide-gray-200">
+            {% for store in stores %}
+                {% include 'store/_store_row.html.twig' with {'store': store} %}
             {% endfor %}
             </tbody>
         </table>
@@ -60,7 +64,7 @@
         <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
             <div class="mt-3">
                 <div class="flex justify-between items-center pb-3">
-                    <h3 class="text-lg leading-6 font-medium text-gray-900">Editar Produto</h3>
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">Editar Loja</h3>
                     <button onclick="closeEditModal()" class="text-gray-400 hover:text-gray-500">
                         <span class="text-2xl">&times;</span>
                     </button>
@@ -72,14 +76,18 @@
         </div>
     </div>
     {% block javascripts %}
+        <!-- Include vanilla-masker library -->
+        <script src="https://unpkg.com/vanilla-masker@1.2.0/lib/vanilla-masker.js"></script>
+
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 // Set up Turbo Stream event listeners
                 document.addEventListener('turbo:before-stream-render', function(event) {
                     const targetElement = document.getElementById(event.target.target);
-                    if (targetElement) {
-                        if (targetElement.id === 'products-table-body' && (event.target.action === 'append' || event.target.action === 'replace')) {
+                    if (targetElement && event.target.action === 'append') {
+                        if (targetElement.id === 'stores-table-body') {
                             setTimeout(() => {
+                                applyInputMasks();
                                 setupEditButtons();
                             }, 0);
                         }
@@ -112,6 +120,9 @@
                         window.location.href = url.toString();
                     });
                 }
+
+                // Apply input masks to the main form
+                applyInputMasks();
             });
 
             function setupEditButtons() {
@@ -119,19 +130,19 @@
                 const editButtons = document.querySelectorAll('.edit-button');
                 editButtons.forEach(button => {
                     button.addEventListener('click', function() {
-                        const productId = this.getAttribute('data-product-id');
-                        openEditModal(productId);
+                        const storeId = this.getAttribute('data-store-id');
+                        openEditModal(storeId);
                     });
                 });
             }
 
-            function openEditModal(productId) {
+            function openEditModal(storeId) {
                 const modal = document.getElementById('editModal');
                 if (modal) {
                     modal.classList.remove('hidden');
 
                     // Carregar o formulário via Turbo Stream
-                    fetch(`/product/${productId}/edit-form`, {
+                    fetch(`/store/${storeId}/edit-form`, {
                         headers: {
                             'Accept': 'text/vnd.turbo-stream.html, text/html, application/xhtml+xml'
                         }
@@ -141,6 +152,8 @@
                             const modalContent = document.getElementById('modalContent');
                             if (modalContent) {
                                 modalContent.innerHTML = html;
+                                // Apply masks to the edit form after it's loaded
+                                applyInputMasks();
                             }
                         })
                         .catch(error => {
@@ -154,6 +167,49 @@
                 if (modal) {
                     modal.classList.add('hidden');
                 }
+            }
+
+            // Function to apply input masks
+            function applyInputMasks() {
+                // CPF/CNPJ mask
+                const cpfCnpjInputs = document.querySelectorAll('.cpf-cnpj-mask');
+                cpfCnpjInputs.forEach(input => {
+                    input.addEventListener('input', function() {
+                        const value = this.value.replace(/\D/g, '');
+                        if (value.length <= 11) {
+                            // CPF mask: 000.000.000-00
+                            VMasker(this).maskPattern('999.999.999-99');
+                        } else {
+                            // CNPJ mask: 00.000.000/0000-00
+                            VMasker(this).maskPattern('99.999.999/9999-99');
+                        }
+                    });
+                    // Trigger input event to apply mask to existing values
+                    input.dispatchEvent(new Event('input'));
+                });
+
+                // Phone mask
+                const phoneInputs = document.querySelectorAll('.phone-mask');
+                phoneInputs.forEach(input => {
+                    input.addEventListener('input', function() {
+                        const value = this.value.replace(/\D/g, '');
+                        if (value.length <= 10) {
+                            // Landline phone: (00) 0000-0000
+                            VMasker(this).maskPattern('(99) 9999-9999');
+                        } else {
+                            // Mobile phone: (00) 00000-0000
+                            VMasker(this).maskPattern('(99) 99999-9999');
+                        }
+                    });
+                    // Trigger input event to apply mask to existing values
+                    input.dispatchEvent(new Event('input'));
+                });
+
+                // CEP (postal code) mask
+                const cepInputs = document.querySelectorAll('.cep-mask');
+                cepInputs.forEach(input => {
+                    VMasker(input).maskPattern('99999-999');
+                });
             }
         </script>
 
