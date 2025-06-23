@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
+    "@stimulus-components/password-visibility": "^3.0.0",
     "@symfony/stimulus-bridge": "^3.2.2",
     "@symfony/ux-live-component": "^2.26.1",
     "postcss-loader": "^8.1.1"

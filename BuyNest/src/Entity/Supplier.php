@@ -22,10 +22,10 @@ class Supplier
     #[ORM\Column(length: 255)]
     private ?string $company = null;
 
-    #[ORM\Column(length: 14)]
+    #[ORM\Column(length: 20)]
     private ?string $cpf_cnpj = null;
 
-    #[ORM\Column(length: 11, nullable: true)]
+    #[ORM\Column(length: 15, nullable: true)]
     private ?string $phone = null;
 
     #[ORM\Column(length: 10, nullable: true)]

@@ -4,31 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff23ff7f-4c0a-4c72-9547-c1f4999482a3" name="Changes" comment="Tela para cadastro de fornecedor">
-      <change afterPath="$PROJECT_DIR$/src/Components/ProductFormComponent.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/supplier/edit_form.html.twig.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.dev" beforeDir="false" afterPath="$PROJECT_DIR$/.env.dev" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+    <list default="true" id="ff23ff7f-4c0a-4c72-9547-c1f4999482a3" name="Changes" comment="Edição, soft delete e módulo de loja funcionando">
+      <change afterPath="$PROJECT_DIR$/assets/controllers/toggle_controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2f12da47-8fb3-4ca0-8674-f69f091c8d7a/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2f12da47-8fb3-4ca0-8674-f69f091c8d7a/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_06_2025_16_20_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_06_2025_16_20__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/bootstrap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/controllers.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/controllers.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/importmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/importmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SupplierController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SupplierController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Inventory.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Inventory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Supplier.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Supplier.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/SupplierForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/SupplierForm.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Form/UserForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/UserForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/InventoryRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/InventoryRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/login/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login/login.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/supplier/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/supplier/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -258,6 +246,7 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;npm.test.executor&quot;: &quot;Run&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Joao_\\AppData\\Local\\JetBrains\\PhpStorm 2024.3.5\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -317,6 +306,17 @@
       <workItem from="1749248269954" duration="5713000" />
       <workItem from="1749468922201" duration="9052000" />
       <workItem from="1749479920661" duration="3003000" />
+      <workItem from="1749496482280" duration="5281000" />
+      <workItem from="1749555106942" duration="16059000" />
+      <workItem from="1749642510335" duration="16351000" />
+      <workItem from="1749729707821" duration="3161000" />
+      <workItem from="1749823294607" duration="2766000" />
+      <workItem from="1750099870040" duration="822000" />
+      <workItem from="1750112417948" duration="425000" />
+      <workItem from="1750160550697" duration="3004000" />
+      <workItem from="1750201063697" duration="1938000" />
+      <workItem from="1750275111956" duration="3495000" />
+      <workItem from="1750444527863" duration="507000" />
     </task>
     <task id="LOCAL-00001" summary="Criação das entidades referentes a país, estado, cidade e fornecedor">
       <option name="closed" value="true" />
@@ -350,7 +350,47 @@
       <option name="project" value="LOCAL" />
       <updated>1749122977246</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Ajuste de dependências para utilização do stimulus e symfony UX">
+      <option name="closed" value="true" />
+      <created>1749496525618</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1749496525618</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Ajuste de dependências para utilização do stimulus e symfony UX">
+      <option name="closed" value="true" />
+      <created>1749496836878</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1749496836878</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Edição de formuláro Supplier funcionando, adição do turbo ao projeto">
+      <option name="closed" value="true" />
+      <created>1749564777743</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1749564777743</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Edição de formuláro Product funcionando, adicionado turbo para validação e atualização desse módulo">
+      <option name="closed" value="true" />
+      <created>1749582846482</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1749582846482</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Edição, soft delete e módulo de loja funcionando">
+      <option name="closed" value="true" />
+      <created>1749670181668</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1749670181668</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -384,6 +424,10 @@
     <MESSAGE value="Atualização do banco com as entidades principais modeladas (ainda em desenvolvimento)" />
     <MESSAGE value="Ajustada a lógica de registro e adição do UserForm ao template de login" />
     <MESSAGE value="Tela para cadastro de fornecedor" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tela para cadastro de fornecedor" />
+    <MESSAGE value="Ajuste de dependências para utilização do stimulus e symfony UX" />
+    <MESSAGE value="Edição de formuláro Supplier funcionando, adição do turbo ao projeto" />
+    <MESSAGE value="Edição de formuláro Product funcionando, adicionado turbo para validação e atualização desse módulo" />
+    <MESSAGE value="Edição, soft delete e módulo de loja funcionando" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edição, soft delete e módulo de loja funcionando" />
   </component>
 </project>

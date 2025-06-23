@@ -1,13 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Home {% endblock %}
+{% block title %} BN - Home {% endblock %}
 
 {% block content %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 {% endblock %}
 
 {% block body %}
-    <body>
-        <h1>Hello World!</h1>
-    </body>
+    <div class="bg-white">
+        <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+            <h2 class="text-2xl font-bold tracking-tight text-gray-900">Catálogo de Produtos</h2>
+
+            <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                {% for product in products %}
+                <div class="group relative">
+                    {% if product.photo %}
+                        <img src="/uploads/products/{{ product.photo }}" alt="{{ product.name }}" class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80" />
+                    {% else %}
+                        <img src="/uploads/products/palceholder.jpg" alt="{{ product.name }}" class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80" />
+                    {% endif %}
+                    <div class="mt-4 flex justify-between">
+                        <div>
+                            <h3 class="text-sm text-gray-700">
+                                <a href="#">
+                                    <span aria-hidden="true" class="absolute inset-0"></span>
+                                    {{ product.name }}
+                                </a>
+                            </h3>
+                            <p class="mt-1 text-sm text-gray-500">{{ product.category.name }}</p>
+                        </div>
+                        {% set lowestPrice = null %}
+                        {% for inventory in product.inventories %}
+                            {% if lowestPrice is null or inventory.price < lowestPrice %}
+                                {% set lowestPrice = inventory.price %}
+                            {% endif %}
+                        {% endfor %}
+                        {% if lowestPrice is not null %}
+                            <p class="text-sm font-medium text-gray-900">R$ {{ lowestPrice|number_format(2, ',', '.') }}</p>
+                        {% else %}
+                            <p class="text-sm font-medium text-gray-900">Preço indisponível</p>
+                        {% endif %}
+                    </div>
+                </div>
+                {% else %}
+                <div class="col-span-full text-center py-8">
+                    <p class="text-gray-500">Nenhum produto disponível no momento.</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

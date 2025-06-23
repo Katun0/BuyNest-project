@@ -22,7 +22,66 @@
     </head>
 
     <body class="bg-gradient-to-br from-indigo-900 to-purple-800 min-h-screen">
-        {% block body %}
-        {% endblock %}
+        <!-- Navigation Bar -->
+        <nav class="bg-white shadow-lg">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="flex justify-between">
+                    <div class="flex space-x-7">
+                        <div>
+                            <!-- Website Logo -->
+                            <a href="{{ path('app_home') }}" class="flex items-center py-4 px-2">
+                                <span class="font-semibold text-gray-700 text-lg">BuyNest</span>
+                            </a>
+                        </div>
+                        <!-- Primary Navbar items -->
+                        <div class="hidden md:flex items-center space-x-1">
+                            <a href="{{ path('app_home') }}" class="py-4 px-2 text-black-500 font-semibold hover:text-indigo-600 hover:border-b-4 hover:border-indigo-600 transition duration-300">Home</a>
+                            <a href="{{ path('app_supplier') }}" class="py-4 px-2 text-black-500 font-semibold hover:text-indigo-600 hover:border-b-4 hover:border-indigo-600 transition duration-300">Fornecedores</a>
+                            <a href="{{ path('app_product') }}" class="py-4 px-2 text-black-500 font-semibold hover:text-indigo-600 hover:border-b-4 hover:border-indigo-600 transition duration-300">Produtos</a>
+                            <a href="{{ path('app_store') }}" class="py-4 px-2 text-black-500 font-semibold hover:text-indigo-600 hover:border-b-4 hover:border-indigo-600 transition duration-300">Lojas</a>
+                            <a href="{{ path('app_inventory') }}" class="py-4 px-2 text-black-500 font-semibold hover:text-indigo-600 hover:border-b-4 hover:border-indigo-600 transition duration-300">Inventário</a>
+                        </div>
+                    </div>
+                    <!-- Secondary Navbar items -->
+                    <div class="hidden md:flex items-center space-x-3">
+                        <a href="{{ path('app_login') }}" class="py-2 px-4 font-medium text-white bg-indigo-600 rounded hover:bg-indigo-500 transition duration-300">Login</a>
+                    </div>
+                    <!-- Mobile menu button -->
+                    <div class="md:hidden flex items-center">
+                        <button class="outline-none mobile-menu-button">
+                            <svg class="w-6 h-6 text-gray-500 hover:text-indigo-600" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                                <path d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div class="hidden mobile-menu">
+                <ul class="pt-2 pb-4">
+                    <li><a href="{{ path('app_home') }}" class="block text-sm px-4 py-2 text-indigo-600 font-semibold">Home</a></li>
+                    <li><a href="{{ path('app_supplier') }}" class="block text-sm px-4 py-2 hover:bg-indigo-100 hover:text-indigo-600 transition duration-300">Fornecedores</a></li>
+                    <li><a href="{{ path('app_product') }}" class="block text-sm px-4 py-2 hover:bg-indigo-100 hover:text-indigo-600 transition duration-300">Produtos</a></li>
+                    <li><a href="{{ path('app_login') }}" class="block text-sm px-4 py-2 hover:bg-indigo-100 hover:text-indigo-600 transition duration-300">Login</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Mobile menu JavaScript -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const btn = document.querySelector("button.mobile-menu-button");
+                const menu = document.querySelector(".mobile-menu");
+
+                btn.addEventListener("click", function() {
+                    menu.classList.toggle("hidden");
+                });
+            });
+        </script>
+
+        <div class="container mx-auto p-4">
+            {% block body %}
+            {% endblock %}
+        </div>
     </body>
 </html>

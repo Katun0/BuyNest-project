@@ -7,105 +7,39 @@
 {% endblock %}
 
 {% block body %}
+    <div id="flash-messages">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="bg-{{ label == 'success' ? 'green' : 'red' }}-100 border border-{{ label == 'success' ? 'green' : 'red' }}-400 text-{{ label == 'success' ? 'green' : 'red' }}-700 px-4 py-3 rounded relative mb-4" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
 
-    <form method="post" class="space-y-6">
-        {{ form_start(form) }}
-        {{ form_errors(form) }}
+    <div id="supplier-form">
+        {% include 'supplier/_form.html.twig' with {'form': form} %}
+    </div>
 
-        <h1 class="text-xl font-bold mb-4">Cadastro de Fornecedor</h1>
+    <div id="supplier-form-errors"></div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {{ form_row(form.name, {
-                'label': 'Nome:',
-                'attr': {
-                    'placeholder': 'Informe o Nome',
-                    'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500'
-                }
-            }) }}
-
-            {{ form_row(form.company, {
-                'label': 'Razão Social:',
-                'attr': {
-                    'placeholder': 'Informe a Razão Social',
-                    'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500'
-                }
-            }) }}
-
-            {{ form_row(form.cpf_cnpj, {
-                'label': 'CPF ou CPNJ:',
-                'attr': {
-                    'placeholder': 'Informe o CPF ou CNPJ da empresa',
-                    'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500'
-                }
-            }) }}
-
-            {{ form_row(form.phone, {
-                'label': 'Contato:',
-                'attr': {
-                    'placeholder': 'Padrão (0XX)XXXX-XXXX',
-                    'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500'
-                }
-            }) }}
-
-            {{ form_row(form.postal_code, {
-                'label': 'Código Postal:',
-                'attr': {
-                    'placeholder': 'Padrão XXXXX-XXX',
-                    'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500'
-                }
-            }) }}
-
-            {{ form_row(form.address, {
-                'label': 'Endereço',
-                'attr': {
-                    'placeholder': 'Informe o endereço',
-                    'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500'
-                }
-            }) }}
-
-            {{ form_row(form.address_number, {
-                'label': 'Número do Endereço',
-                'attr': {
-                    'placeholder': 'Número da rua',
-                    'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500'
-                }
-            }) }}
-
-            {{ form_row(form.city, {
-                'label': 'Cidade',
-                'attr': {
-                    'placeholder': 'Selecione a cidade',
-                    'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500'
-                }
-            }) }}
-        </div>
-
-        <div class="flex items-center space-x-4">
-            <label class="text-sm font-medium text-black-700">Ativo</label>
+    <div class="flex justify-between items-center my-6">
+        <h2 class="text-xl font-semibold">Lista de Fornecedores</h2>
+        <div class="flex items-center">
+            <label class="text-sm font-medium text-black-700">Mostrar Inativo </label>
             <label class="relative inline-flex items-center cursor-pointer">
-                {{ form_widget(form.active, {
-                    'attr': {
-                        'class': 'sr-only peer'
-                    }
-                }) }}
+                <input type="checkbox"
+                       id="show-inactive"
+                       name="show_inactive"
+                       class="sr-only peer"
+                       data-controller="supplier-inactive"
+                       {% if app.request.query.get('show_inactive') %}checked{% endif %}>
                 <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-500 rounded-full peer dark:bg-gray-700 peer-checked:bg-blue-600 transition-all duration-300"></div>
                 <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform duration-300 peer-checked:translate-x-full"></div>
             </label>
+
         </div>
-
-
-        <div class="flex justify-between mt-6">
-            <div class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-                 {{ form_widget(form.submit) }}
-            </div>
-        </div>
-
-        {{ form_rest(form) }}
-        {{ form_end(form) }}
-    </form>
-
-
-    <h2 class="text-xl font-semibold my-6">Lista de Fornecedores</h2>
+    </div>
 
     <div class="overflow-x-auto">
         <table class="min-w-full divide-y divide-gray-200 border border-gray-300">
@@ -124,27 +58,8 @@
                 <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Ações</th>
             </tr>
             </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-            {% for supplier in suppliers %}
-                <tr class="hover:bg-gray-50">
-                    <td class="px-4 py-2 text-sm">{{ supplier.id }}</td>
-                    <td class="px-4 py-2 text-sm">{{ supplier.name }}</td>
-                    <td class="px-4 py-2 text-sm">{{ supplier.company }}</td>
-                    <td class="px-4 py-2 text-sm">{{ supplier.CpfCnpj }}</td>
-                    <td class="px-4 py-2 text-sm">{{ supplier.phone }}</td>
-                    <td class="px-4 py-2 text-sm">{{ supplier.PostalCode }}</td>
-                    <td class="px-4 py-2 text-sm">{{ supplier.address }}</td>
-                    <td class="px-4 py-2 text-sm">{{ supplier.AddressNumber }}</td>
-                    <td class="px-4 py-2 text-sm">{{ supplier.city.name }}</td>
-                    <td class="px-4 py-2 text-s m">{{ supplier.active ? 'Sim' : 'Não' }}</td>
-                    <td class="px-4 py-2 text-sm">
-                        <button type="button"
-                                data-supplier-id="{{ supplier.id }}">
-                        Editar
-                        </button>
-                    </td>
-                </tr>
-            {% endfor %}
+            <tbody id="suppliers-table-body" class="bg-white divide-y divide-gray-200">
+                {% include 'supplier/_suppliers_table.html.twig' with {'suppliers': suppliers} %}
             </tbody>
         </table>
     </div>
@@ -165,16 +80,26 @@
         </div>
     </div>
     {% block javascripts %}
+        <!-- Include vanilla-masker library -->
+        <script src="https://unpkg.com/vanilla-masker@1.2.0/lib/vanilla-masker.js"></script>
+
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                // Adicionar listeners para todos os botões de edição
-                const editButtons = document.querySelectorAll('.edit-button');
-                editButtons.forEach(button => {
-                    button.addEventListener('click', function() {
-                        const supplierId = this.getAttribute('data-supplier-id');
-                        openEditModal(supplierId);
-                    });
+                // Set up Turbo Stream event listeners
+                document.addEventListener('turbo:before-stream-render', function(event) {
+                    const targetElement = document.getElementById(event.target.target);
+                    if (targetElement && event.target.action === 'append') {
+                        if (targetElement.id === 'suppliers-table-body') {
+                            setTimeout(() => {
+                                applyInputMasks();
+                                setupEditButtons();
+                            }, 0);
+                        }
+                    }
                 });
+
+                // Set up edit buttons
+                setupEditButtons();
 
                 // Adicionar listener para fechar o modal
                 const modal = document.getElementById('editModal');
@@ -185,20 +110,54 @@
                         }
                     });
                 }
+
+                // Handle show inactive checkbox
+                const showInactiveCheckbox = document.getElementById('show-inactive');
+                if (showInactiveCheckbox) {
+                    showInactiveCheckbox.addEventListener('change', function() {
+                        const url = new URL(window.location.href);
+                        if (this.checked) {
+                            url.searchParams.set('show_inactive', '1');
+                        } else {
+                            url.searchParams.delete('show_inactive');
+                        }
+                        window.location.href = url.toString();
+                    });
+                }
+
+                // Apply input masks to the main form
+                applyInputMasks();
             });
+
+            function setupEditButtons() {
+                // Adicionar listeners para todos os botões de edição
+                const editButtons = document.querySelectorAll('.edit-button');
+                editButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const supplierId = this.getAttribute('data-supplier-id');
+                        openEditModal(supplierId);
+                    });
+                });
+            }
 
             function openEditModal(supplierId) {
                 const modal = document.getElementById('editModal');
                 if (modal) {
                     modal.classList.remove('hidden');
 
-                    // Carregar o formulário via AJAX
-                    fetch(`/supplier/${supplierId}/edit-form`)
+                    // Carregar o formulário via Turbo Stream
+                    fetch(`/supplier/${supplierId}/edit-form`, {
+                        headers: {
+                            'Accept': 'text/vnd.turbo-stream.html, text/html, application/xhtml+xml'
+                        }
+                    })
                         .then(response => response.text())
                         .then(html => {
                             const modalContent = document.getElementById('modalContent');
                             if (modalContent) {
                                 modalContent.innerHTML = html;
+                                // Apply masks to the edit form after it's loaded
+                                applyInputMasks();
                             }
                         })
                         .catch(error => {
@@ -212,6 +171,49 @@
                 if (modal) {
                     modal.classList.add('hidden');
                 }
+            }
+
+            // Function to apply input masks
+            function applyInputMasks() {
+                // CPF/CNPJ mask
+                const cpfCnpjInputs = document.querySelectorAll('.cpf-cnpj-mask');
+                cpfCnpjInputs.forEach(input => {
+                    input.addEventListener('input', function() {
+                        const value = this.value.replace(/\D/g, '');
+                        if (value.length <= 11) {
+                            // CPF mask: 000.000.000-00
+                            VMasker(this).maskPattern('999.999.999-99');
+                        } else {
+                            // CNPJ mask: 00.000.000/0000-00
+                            VMasker(this).maskPattern('99.999.999/9999-99');
+                        }
+                    });
+                    // Trigger input event to apply mask to existing values
+                    input.dispatchEvent(new Event('input'));
+                });
+
+                // Phone mask
+                const phoneInputs = document.querySelectorAll('.phone-mask');
+                phoneInputs.forEach(input => {
+                    input.addEventListener('input', function() {
+                        const value = this.value.replace(/\D/g, '');
+                        if (value.length <= 10) {
+                            // Landline phone: (00) 0000-0000
+                            VMasker(this).maskPattern('(99) 9999-9999');
+                        } else {
+                            // Mobile phone: (00) 00000-0000
+                            VMasker(this).maskPattern('(99) 99999-9999');
+                        }
+                    });
+                    // Trigger input event to apply mask to existing values
+                    input.dispatchEvent(new Event('input'));
+                });
+
+                // CEP (postal code) mask
+                const cepInputs = document.querySelectorAll('.cep-mask');
+                cepInputs.forEach(input => {
+                    VMasker(input).maskPattern('99999-999');
+                });
             }
         </script>
 

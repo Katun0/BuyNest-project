@@ -7,104 +7,158 @@
 {% endblock %}
 
 {% block body %}
+    <div id="flash-messages">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="bg-{{ label == 'success' ? 'green' : 'red' }}-100 border border-{{ label == 'success' ? 'green' : 'red' }}-400 text-{{ label == 'success' ? 'green' : 'red' }}-700 px-4 py-3 rounded relative mb-4" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
 
-    <form method="post" class="space-y-6">
-        {{ form_start(form) }}
-        {{ form_errors(form) }}
+    <div id="product-form">
+        {% include 'product/_form.html.twig' with {'form': form} %}
+    </div>
 
-        <h1 class="text-xl font-bold mb-4">{{ tittle }}</h1>
+    <div id="product-form-errors"></div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {{ form_row(form.name, {
-                'label': 'Nome:',
-                'attr': {
-                    'placeholder': 'Informe o Nome',
-                    'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500'
-                }
-            }) }}
-
-            {{ form_row(form.description, {
-                'label': 'Descrição:',
-                'attr': {
-                    'placeholder': 'Descrição',
-                    'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500'
-                }
-            }) }}
-
-            {{ form_row(form.supplier, {
-                'label': 'Fornecedor:',
-                'attr': {
-                    'placeholder': 'Descrição',
-                    'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500'
-                }
-            }) }}
-
-            {{ form_row(form.category, {
-                'label': 'Fornecedor:',
-                'attr': {
-                    'placeholder': 'Descrição',
-                    'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500'
-                }
-            })
-
-            }}
-        </div>
-
-        <div class="flex items-center space-x-4">
-            <label class="text-sm font-medium text-black-700">Ativo</label>
+    <div class="flex justify-between items-center my-6">
+        <h2 class="text-xl font-semibold">Lista de Produtos</h2>
+        <div class="flex items-center">
+            <label class="text-sm font-medium text-black-700">Mostrar Inativo </label>
             <label class="relative inline-flex items-center cursor-pointer">
-                {{ form_widget(form.active, {
-                    'attr': {
-                        'class': 'sr-only peer'
-                    }
-                }) }}
+                <input type="checkbox" id="show-inactive" name="show_inactive" class="sr-only peer" {% if app.request.query.get('show_inactive') %}checked{% endif %}>
                 <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-500 rounded-full peer dark:bg-gray-700 peer-checked:bg-blue-600 transition-all duration-300"></div>
                 <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform duration-300 peer-checked:translate-x-full"></div>
             </label>
         </div>
-
-
-        <div class="flex justify-between mt-6">
-            <div class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-                {{ form_widget(form.submit) }}
-            </div>
-        </div>
-
-        {{ form_rest(form) }}
-        {{ form_end(form) }}
-    </form>
-
-
-    <h2 class="text-xl font-semibold my-6">Lista de Produtos</h2>
+    </div>
 
     <div class="overflow-x-auto">
         <table class="min-w-full divide-y divide-gray-200 border border-gray-300">
             <thead class="bg-gray-100">
             <tr>
                 <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">ID</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Foto</th>
                 <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Nome</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Descrição</th>
                 <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Categoria</th>
                 <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Fornecedor</th>
                 <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Ativo</th>
                 <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Ações</th>
             </tr>
             </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
+            <tbody id="products-table-body" class="bg-white divide-y divide-gray-200">
             {% for product in products %}
-                <tr class="hover:bg-gray-50">
-                    <td class="px-4 py-2 text-sm">{{ product.id }}</td>
-                    <td class="px-4 py-2 text-sm">{{ product.name }}</td>
-                    <td class="px-4 py-2 text-sm">{{ product.category.name }}</td>
-                    <td class="px-4 py-2 text-sm">{{ product.supplier.name }}</td>
-                    <td class="px-4 py-2 text-sm">{{ product.active ? 'Sim' : 'Não' }}</td>
-                    <td class="px-4 py-2 text-sm">
-                        <a href="#" class="text-blue-600 hover:text-blue-900">Editar</a>
-                    </td>
-                </tr>
+                {% include 'product/_product_row.html.twig' with {'product': product} %}
             {% endfor %}
-
             </tbody>
         </table>
     </div>
+
+    <div id="editModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <div class="mt-3">
+                <div class="flex justify-between items-center pb-3">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">Editar Produto</h3>
+                    <button onclick="closeEditModal()" class="text-gray-400 hover:text-gray-500">
+                        <span class="text-2xl">&times;</span>
+                    </button>
+                </div>
+                <div id="modalContent">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block javascripts %}
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Set up Turbo Stream event listeners
+                document.addEventListener('turbo:before-stream-render', function(event) {
+                    const targetElement = document.getElementById(event.target.target);
+                    if (targetElement) {
+                        if (targetElement.id === 'products-table-body' && (event.target.action === 'append' || event.target.action === 'replace')) {
+                            setTimeout(() => {
+                                setupEditButtons();
+                            }, 0);
+                        }
+                    }
+                });
+
+                // Set up edit buttons
+                setupEditButtons();
+
+                // Adicionar listener para fechar o modal
+                const modal = document.getElementById('editModal');
+                if (modal) {
+                    modal.addEventListener('click', function(e) {
+                        if (e.target === this) {
+                            closeEditModal();
+                        }
+                    });
+                }
+
+                // Handle show inactive checkbox
+                const showInactiveCheckbox = document.getElementById('show-inactive');
+                if (showInactiveCheckbox) {
+                    showInactiveCheckbox.addEventListener('change', function() {
+                        const url = new URL(window.location.href);
+                        if (this.checked) {
+                            url.searchParams.set('show_inactive', '1');
+                        } else {
+                            url.searchParams.delete('show_inactive');
+                        }
+                        window.location.href = url.toString();
+                    });
+                }
+            });
+
+            function setupEditButtons() {
+                // Adicionar listeners para todos os botões de edição
+                const editButtons = document.querySelectorAll('.edit-button');
+                editButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const productId = this.getAttribute('data-product-id');
+                        openEditModal(productId);
+                    });
+                });
+            }
+
+            function openEditModal(productId) {
+                const modal = document.getElementById('editModal');
+                if (modal) {
+                    modal.classList.remove('hidden');
+
+                    // Carregar o formulário via Turbo Stream
+                    fetch(`/product/${productId}/edit-form`, {
+                        headers: {
+                            'Accept': 'text/vnd.turbo-stream.html, text/html, application/xhtml+xml'
+                        }
+                    })
+                        .then(response => response.text())
+                        .then(html => {
+                            const modalContent = document.getElementById('modalContent');
+                            if (modalContent) {
+                                modalContent.innerHTML = html;
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Erro ao carregar o formulário:', error);
+                        });
+                }
+            }
+
+            function closeEditModal() {
+                const modal = document.getElementById('editModal');
+                if (modal) {
+                    modal.classList.add('hidden');
+                }
+            }
+        </script>
+
+    {% endblock %}
+
 
 {% endblock %}

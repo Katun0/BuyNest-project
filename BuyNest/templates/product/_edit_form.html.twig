@@ -1,0 +1,93 @@
+{{ form_start(form, {'attr': {'id': 'product-edit-form', 'data-turbo-stream': 'true', 'data-controller': 'product-form'}}) }}
+<div id="product-edit-form-errors">
+    {{ form_errors(form) }}
+</div>
+
+<div class="grid grid-cols-1 gap-4">
+    <div>
+        {{ form_label(form.name, 'Nome:', {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+        {{ form_widget(form.name, {
+            'attr': {
+                'placeholder': 'Informe o Nome',
+                'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500',
+                'data-action': 'blur->product-form#validateField',
+                'data-field': 'name'
+            }
+        }) }}
+        <div id="product_name_error">
+            {{ form_errors(form.name) }}
+        </div>
+    </div>
+
+    <div>
+        {{ form_label(form.description, 'Descrição:', {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+        {{ form_widget(form.description, {
+            'attr': {
+                'placeholder': 'Informe a Descrição',
+                'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500',
+                'data-action': 'blur->product-form#validateField',
+                'data-field': 'description'
+            }
+        }) }}
+        <div id="product_description_error">
+            {{ form_errors(form.description) }}
+        </div>
+    </div>
+
+    <div>
+        {{ form_label(form.supplier, 'Fornecedor:', {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+        {{ form_widget(form.supplier, {
+            'attr': {
+                'placeholder': 'Selecione o Fornecedor',
+                'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500',
+                'data-action': 'change->product-form#validateField',
+                'data-field': 'supplier'
+            }
+        }) }}
+        <div id="product_supplier_error">
+            {{ form_errors(form.supplier) }}
+        </div>
+    </div>
+
+    <div>
+        {{ form_label(form.category, 'Categoria:', {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+        {{ form_widget(form.category, {
+            'attr': {
+                'placeholder': 'Selecione a Categoria',
+                'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500',
+                'data-action': 'change->product-form#validateField',
+                'data-field': 'category'
+            }
+        }) }}
+        <div id="product_category_error">
+            {{ form_errors(form.category) }}
+        </div>
+    </div>
+
+    <div class="flex items-center space-x-4">
+        <label class="text-sm font-medium text-black-700">Ativo</label>
+        <label class="relative inline-flex items-center cursor-pointer">
+            {{ form_widget(form.active, {
+                'attr': {
+                    'class': 'sr-only peer'
+                }
+            }) }}
+            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-500 rounded-full peer dark:bg-gray-700 peer-checked:bg-blue-600 transition-all duration-300"></div>
+            <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform duration-300 peer-checked:translate-x-full"></div>
+        </label>
+    </div>
+
+
+    <div class="flex justify-between mt-6">
+        <div class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+             {{ form_widget(form.submit, {
+                 'attr': {
+                     'data-action': 'click->product-form#save'
+                 }
+             }) }}
+        </div>
+    </div>
+</div>
+
+{{ form_rest(form) }}
+{{ form_end(form) }}

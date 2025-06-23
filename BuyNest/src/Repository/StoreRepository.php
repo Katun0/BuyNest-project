@@ -16,6 +16,33 @@ class StoreRepository extends ServiceEntityRepository
         parent::__construct($registry, Store::class);
     }
 
+    /**
+     * @return Store[] Returns an array of active Store objects
+     */
+    public function findAllActive(): array
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.active = :val')
+            ->setParameter('val', true)
+            ->orderBy('s.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
+     * @return Store[] Returns an array of both active and inactive Store objects
+     */
+    public function findAllWithInactive(): array
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.active IS NOT NULL')
+            ->orderBy('s.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return Store[] Returns an array of Store objects
 //     */
