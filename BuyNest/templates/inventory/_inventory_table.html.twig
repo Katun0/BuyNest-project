@@ -1,0 +1,3 @@
+{% for inventory in inventoryItems %}
+    {% include 'inventory/_inventory_row.html.twig' with {'inventory': inventory} %}
+{% endfor %}

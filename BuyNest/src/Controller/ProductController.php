@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\UX\TurboBundle\TurboStreamResponse;
 
 final class ProductController extends AbstractController
@@ -19,7 +20,8 @@ final class ProductController extends AbstractController
     public function index(
         EntityManagerInterface $entityManager,
         Request $request,
-        ProductRepository $productRepository
+        ProductRepository $productRepository,
+        SluggerInterface $slugger
     ): Response {
         $showInactive = $request->query->getBoolean('show_inactive', false);
 
@@ -35,6 +37,29 @@ final class ProductController extends AbstractController
             $now = new \DateTimeImmutable();
             $product->setCreatedAt($now);
             $product->setLastModified($now);
+
+            // Handle photo upload
+            $photoFile = $form->get('photo')->getData();
+            if ($photoFile) {
+                $originalFilename = pathinfo($photoFile->getClientOriginalName(), PATHINFO_FILENAME);
+                // Use the slugger to create a safe filename
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$photoFile->guessExtension();
+
+                // Move the file to the directory where product photos are stored
+                try {
+                    $photoFile->move(
+                        $this->getParameter('product_photos_directory'),
+                        $newFilename
+                    );
+
+                    // Update the 'photo' property to store the filename
+                    $product->setPhoto($newFilename);
+                } catch (\Exception $e) {
+                    // Handle exception if something happens during file upload
+                    $this->addFlash('error', 'Erro ao fazer upload da foto: ' . $e->getMessage());
+                }
+            }
 
             $entityManager->persist($product);
             $entityManager->flush();
@@ -98,13 +123,47 @@ final class ProductController extends AbstractController
     public function edit(
         Product $product,
         EntityManagerInterface $entityManager,
-        Request $request
+        Request $request,
+        SluggerInterface $slugger
     ): Response {
         $form = $this->createForm(ProductForm::class, $product);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $product->setLastModified(new \DateTimeImmutable());
+
+            // Handle photo upload
+            $photoFile = $form->get('photo')->getData();
+            if ($photoFile) {
+                $originalFilename = pathinfo($photoFile->getClientOriginalName(), PATHINFO_FILENAME);
+                // Use the slugger to create a safe filename
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$photoFile->guessExtension();
+
+                // Move the file to the directory where product photos are stored
+                try {
+                    $photoFile->move(
+                        $this->getParameter('product_photos_directory'),
+                        $newFilename
+                    );
+
+                    // Delete the old photo file if it exists
+                    $oldPhoto = $product->getPhoto();
+                    if ($oldPhoto) {
+                        $oldPhotoPath = $this->getParameter('product_photos_directory') . '/' . $oldPhoto;
+                        if (file_exists($oldPhotoPath)) {
+                            unlink($oldPhotoPath);
+                        }
+                    }
+
+                    // Update the 'photo' property to store the filename
+                    $product->setPhoto($newFilename);
+                } catch (\Exception $e) {
+                    // Handle exception if something happens during file upload
+                    $this->addFlash('error', 'Erro ao fazer upload da foto: ' . $e->getMessage());
+                }
+            }
+
             $entityManager->flush();
 
             if ($request->headers->get('Accept') === 'text/vnd.turbo-stream.html') {

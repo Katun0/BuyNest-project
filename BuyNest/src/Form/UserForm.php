@@ -7,7 +7,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
@@ -21,8 +20,12 @@ class UserForm extends AbstractType
             ->add('email', EmailType::class)
 
             ->add('password', PasswordType::class, [
-                'mapped' => false,
                 'toggle' => true,
+                'hidden_label' => 'Masquer',
+                'visible_label' => 'Afficher',
+                'visible_icon' => null,
+                'hidden_icon' => null,
+                'mapped' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Por favor, insira uma senha',

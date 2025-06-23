@@ -28,6 +28,7 @@ class Inventory
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $last_modified = null;
 
+
     public function getId(): ?int
     {
         return $this->id;
@@ -93,4 +94,5 @@ class Inventory
 
         return $this;
     }
+
 }

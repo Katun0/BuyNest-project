@@ -1,0 +1,7 @@
+{% if errors|length > 0 %}
+    <div class="text-red-500 text-sm mt-1">
+        {% for error in errors %}
+            <div>{{ error.message }}</div>
+        {% endfor %}
+    </div>
+{% endif %}

@@ -1,0 +1,22 @@
+{% if form.vars.errors|length > 0 %}
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+        <ul>
+            {% for error in form.vars.errors %}
+                <li>{{ error.message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+{% for child in form.children %}
+    {% if child.vars.errors|length > 0 %}
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+            <strong>{{ child.vars.label|default(child.vars.name) }}:</strong>
+            <ul>
+                {% for error in child.vars.errors %}
+                    <li>{{ error.message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+{% endfor %}

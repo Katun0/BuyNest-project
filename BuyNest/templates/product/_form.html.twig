@@ -63,6 +63,25 @@
     </div>
 </div>
 
+<div class="mt-4">
+    {{ form_label(form.photo, 'Foto do Produto:', {'label_attr': {'class': 'block text-sm font-medium text-black-700'}}) }}
+    {{ form_widget(form.photo, {
+        'attr': {
+            'class': 'block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none',
+            'data-action': 'change->product-form#validateField',
+            'data-field': 'photo'
+        }
+    }) }}
+    <div id="product_photo_error">
+        {{ form_errors(form.photo) }}
+    </div>
+    {% if product is defined and product.photo %}
+        <div class="mt-2">
+            <img src="{{ asset('uploads/products/' ~ product.photo) }}" alt="Foto do produto" class="h-32 w-32 object-cover rounded-lg">
+        </div>
+    {% endif %}
+</div>
+
 <div class="flex items-center space-x-4 mt-4">
     <label class="text-sm font-medium text-black-700">Ativo</label>
     <label class="relative inline-flex items-center cursor-pointer">

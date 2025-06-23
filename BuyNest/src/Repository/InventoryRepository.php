@@ -16,6 +16,7 @@ class InventoryRepository extends ServiceEntityRepository
         parent::__construct($registry, Inventory::class);
     }
 
+
 //    /**
 //     * @return Inventory[] Returns an array of Inventory objects
 //     */
