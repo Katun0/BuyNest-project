@@ -22,13 +22,13 @@ class Supplier
     #[ORM\Column(length: 255)]
     private ?string $company = null;
 
-    #[ORM\Column(length: 14)]
+    #[ORM\Column(length: 20)]
     private ?string $cpf_cnpj = null;
 
-    #[ORM\Column(length: 11, nullable: true)]
+    #[ORM\Column(length: 15, nullable: true)]
     private ?string $phone = null;
 
-    #[ORM\Column(length: 8, nullable: true)]
+    #[ORM\Column(length: 10, nullable: true)]
     private ?string $postal_code = null;
 
     #[ORM\Column(type: Types::TEXT)]
@@ -41,7 +41,7 @@ class Supplier
     #[ORM\JoinColumn(nullable: false)]
     private ?City $city = null;
 
-    #[ORM\Column]
+    #[ORM\Column (nullable: true)]
     private ?bool $active = null;
 
     #[ORM\Column(nullable: true)]

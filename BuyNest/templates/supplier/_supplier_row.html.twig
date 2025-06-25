@@ -1,0 +1,19 @@
+<tr id="supplier_{{ supplier.id }}" class="hover:bg-black hover:bg-opacity-25   ">
+    <td class="px-4 py-2 text-sm">{{ supplier.id }}</td>
+    <td class="px-4 py-2 text-sm">{{ supplier.name }}</td>
+    <td class="px-4 py-2 text-sm">{{ supplier.company }}</td>
+    <td class="px-4 py-2 text-sm">{{ supplier.CpfCnpj }}</td>
+    <td class="px-4 py-2 text-sm">{{ supplier.phone }}</td>
+    <td class="px-4 py-2 text-sm">{{ supplier.PostalCode }}</td>
+    <td class="px-4 py-2 text-sm">{{ supplier.address }}</td>
+    <td class="px-4 py-2 text-sm">{{ supplier.AddressNumber }}</td>
+    <td class="px-4 py-2 text-sm">{{ supplier.city.name }}</td>
+    <td class="px-4 py-2 text-sm">{{ supplier.active ? 'Sim' : 'Não' }}</td>
+    <td class="px-4 py-2 text-sm">
+        <button type="button"
+                class="edit-button"
+                data-supplier-id="{{ supplier.id }}">
+            Editar
+        </button>
+    </td>
+</tr>

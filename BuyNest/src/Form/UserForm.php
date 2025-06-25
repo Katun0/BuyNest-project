@@ -20,6 +20,11 @@ class UserForm extends AbstractType
             ->add('email', EmailType::class)
 
             ->add('password', PasswordType::class, [
+                'toggle' => true,
+                'hidden_label' => 'Masquer',
+                'visible_label' => 'Afficher',
+                'visible_icon' => null,
+                'hidden_icon' => null,
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank([

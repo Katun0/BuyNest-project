@@ -23,19 +23,19 @@ class LoginController extends AbstractController
 
         return $this->render('login/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
 
-/*
-        if ($request->isMethod('POST')) {
-            $email = $request->request->get('email');
-            $password = $request->request->get('password');
+        /*
+                if ($request->isMethod('POST')) {
+                    $email = $request->request->get('email');
+                    $password = $request->request->get('password');
 
-            // Exemplo simples, autenticação fictícia
-            if ($email === 'admin@admin.com' && $password === '1234') {
-                return $this->redirectToRoute('app_home'); // depois cria essa rota
-            } else {
-                $error = 'Usuário ou senha inválidos.';
-            }
-        }
-*/
+                    // Exemplo simples, autenticação fictícia
+                    if ($email === 'admin@admin.com' && $password === '1234') {
+                        return $this->redirectToRoute('app_home'); // depois cria essa rota
+                    } else {
+                        $error = 'Usuário ou senha inválidos.';
+                    }
+                }
+        */
     }
 
     #[Route('/login', name: 'app_login')]

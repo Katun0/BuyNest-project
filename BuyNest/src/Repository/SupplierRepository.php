@@ -16,6 +16,20 @@ class SupplierRepository extends ServiceEntityRepository
         parent::__construct($registry, Supplier::class);
     }
 
+    /**
+     * @return Supplier[] Returns an array of active Supplier objects
+     */
+    public function findAllActive(): array
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.active = :val')
+            ->setParameter('val', true)
+            ->orderBy('s.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return Supplier[] Returns an array of Supplier objects
 //     */

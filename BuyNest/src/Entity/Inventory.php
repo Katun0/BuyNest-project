@@ -22,8 +22,12 @@ class Inventory
     #[ORM\Column]
     private ?int $quantity = null;
 
+    #[ORM\Column]
+    private ?float $price = null;
+
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $last_modified = null;
+
 
     public function getId(): ?int
     {
@@ -66,6 +70,19 @@ class Inventory
         return $this;
     }
 
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(float $price): static
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+
     public function getLastModified(): ?\DateTimeImmutable
     {
         return $this->last_modified;
@@ -77,4 +94,5 @@ class Inventory
 
         return $this;
     }
+
 }
