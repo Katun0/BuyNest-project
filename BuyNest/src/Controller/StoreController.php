@@ -11,10 +11,13 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\UX\TurboBundle\TurboStreamResponse;
 
+#[IsGranted('ROLE_ADMIN')]
 final class StoreController extends AbstractController
 {
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/store', name: 'app_store')]
     public function index(
         EntityManagerInterface $entityManager,
@@ -78,7 +81,7 @@ final class StoreController extends AbstractController
         ]);
     }
 
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/store/{id}/edit-form', name: 'app_store_edit_form')]
     public function editForm(Store $store): Response
     {
@@ -92,7 +95,7 @@ final class StoreController extends AbstractController
             'store' => $store,
         ]);
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/store/{id}/edit', name: 'app_store_edit')]
     public function edit(
         Store $store,
@@ -155,7 +158,7 @@ final class StoreController extends AbstractController
 
         return $this->redirectToRoute('app_store');
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/store/validate/{field}', name: 'app_store_validate_field', methods: ['POST'])]
     public function validateField(
         Request $request,
@@ -179,7 +182,7 @@ final class StoreController extends AbstractController
             ]
         ]);
     }
-    
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/store/toggle-inactive', name: 'app_store_toggle_inactive', methods: ['GET'])]
     public function toggleInactive(
         Request $request,

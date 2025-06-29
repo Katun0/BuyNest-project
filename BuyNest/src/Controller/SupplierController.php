@@ -15,6 +15,7 @@ use Symfony\UX\TurboBundle\TurboStreamResponse;
 
 final class SupplierController extends AbstractController
 {
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/supplier', name: 'app_supplier')]
     public function index(
         EntityManagerInterface $entityManager,

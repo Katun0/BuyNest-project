@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff23ff7f-4c0a-4c72-9547-c1f4999482a3" name="Changes" comment="Autenticação de Usuário e criação do carrinho funcionais">
+    <list default="true" id="ff23ff7f-4c0a-4c72-9547-c1f4999482a3" name="Changes" comment="Método do controller addToCart funcional para adicionar item e somar quantidade">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/CartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CartController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/ItemOnCart.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/ItemOnCart.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/InventoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/InventoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProductController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/StoreController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/StoreController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SupplierController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SupplierController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -321,7 +326,7 @@
       <workItem from="1751024436429" duration="1702000" />
       <workItem from="1751026292076" duration="55000" />
       <workItem from="1751026449852" duration="11203000" />
-      <workItem from="1751160247215" duration="14538000" />
+      <workItem from="1751160247215" duration="15654000" />
     </task>
     <task id="LOCAL-00001" summary="Criação das entidades referentes a país, estado, cidade e fornecedor">
       <option name="closed" value="true" />
@@ -403,7 +408,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751171926699</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Método do controller addToCart funcional para adicionar item e somar quantidade">
+      <option name="closed" value="true" />
+      <created>1751180024290</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1751180024290</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -442,6 +455,7 @@
     <MESSAGE value="Edição de formuláro Product funcionando, adicionado turbo para validação e atualização desse módulo" />
     <MESSAGE value="Edição, soft delete e módulo de loja funcionando" />
     <MESSAGE value="Autenticação de Usuário e criação do carrinho funcionais" />
-    <option name="LAST_COMMIT_MESSAGE" value="Autenticação de Usuário e criação do carrinho funcionais" />
+    <MESSAGE value="Método do controller addToCart funcional para adicionar item e somar quantidade" />
+    <option name="LAST_COMMIT_MESSAGE" value="Método do controller addToCart funcional para adicionar item e somar quantidade" />
   </component>
 </project>

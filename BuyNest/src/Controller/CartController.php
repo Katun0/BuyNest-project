@@ -12,6 +12,7 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[IsGranted('ROLE_USER')]
 class CartController extends AbstractController
 {
     #[Route('/cart/add/{id}', name: 'app_cart_add', methods: ['GET', 'POST'])]
