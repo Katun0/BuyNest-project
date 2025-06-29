@@ -17,7 +17,7 @@ class ItemOnCart
     private ?ShoppingCart $cartID = null;
 
     #[ORM\ManyToOne(inversedBy: 'itemOnCarts')]
-    private ?product $productID = null;
+    private ?Product $productID = null;
 
     #[ORM\Column]
     private ?int $quantity = null;
@@ -45,12 +45,12 @@ class ItemOnCart
         return $this;
     }
 
-    public function getProductID(): ?product
+    public function getProductID(): ?Product
     {
         return $this->productID;
     }
 
-    public function setProductID(?product $productID): static
+    public function setProductID(?Product $productID): static
     {
         $this->productID = $productID;
 

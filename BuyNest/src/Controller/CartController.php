@@ -31,26 +31,35 @@ class CartController extends AbstractController
 
         if (!$cart) {
             $cart = new ShoppingCart();
-            $cart->setUserID($user);
+            $cart->setUserID($user->getId());;
             $cart->setCreatedAt(new \DateTimeImmutable());
             $cart->setUpdatedAt(new \DateTimeImmutable());
             $entityManager->persist($cart);
         }
 
 
+        $existingItem = null;
+        foreach ($cart->getItemOnCarts() as $item) {
+            if ($item->getProductID()->getId() === $product->getId()) {
+                $existingItem = $item;
+                break;
+            }
+        }
+
+        if ($existingItem) {
+            $existingItem->setQuantity($existingItem->getQuantity() + 1);
+        } else {
+            $itemOnCart = new ItemOnCart();
+            $itemOnCart->setQuantity(1);
+            $itemOnCart->setPriceAtTime($product->getInventories()->first()->getPrice());
+            $itemOnCart->setProductID($product);;
+            $itemOnCart->setCartID($cart);
+            $itemOnCart->setCreatedAt(new \DateTimeImmutable());
+            $entityManager->persist($itemOnCart);
+        }
 
         $entityManager->flush();
 
         return $this->redirectToRoute('app_home');
-    }
-
-    #[Route('/cart/add/item/{id}', name: 'app_cart_add_item', methods: ['GET', 'POST'])]
-    public function addToCartItem(
-        ItemOnCart $itemOnCart,
-        Product $product,
-        ShoppingCartRepository $shoppingCartRepository,
-        EntityManagerInterface $entityManager,
-    ): Response {
-
     }
 }
