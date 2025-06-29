@@ -1,13 +1,15 @@
 {{ form_start(form, {'attr': {'id': 'store-form', 'data-turbo-stream': 'true'}}) }}
 {{ form_errors(form) }}
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    <div>
+<div class="bg-gray-100 rounded-xl shadow-lg p-6 flex flex-col md:flex-row gap-6">
+    <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
+
+        <div class="flex flex-col">
         {{ form_label(form.name, 'Nome:', {'label_attr': {'class': 'block text-sm font-medium text-black-700'}}) }}
         {{ form_widget(form.name, {
             'attr': {
                 'placeholder': 'Informe o Nome',
-                'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500',
+                'class': 'w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500',
                 'data-action': 'blur->store-form#validateField',
                 'data-field': 'name'
             }
@@ -15,14 +17,15 @@
         <div id="store_name_error">
             {{ form_errors(form.name) }}
         </div>
-    </div>
 
-    <div>
+        </div>
+
+    <div class="flex flex-col">
         {{ form_label(form.company, 'Razão Social:', {'label_attr': {'class': 'block text-sm font-medium text-black-700'}}) }}
         {{ form_widget(form.company, {
             'attr': {
                 'placeholder': 'Informe a Razão Social',
-                'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500',
+                'class': 'w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500',
                 'data-action': 'blur->store-form#validateField',
                 'data-field': 'company'
             }
@@ -32,12 +35,12 @@
         </div>
     </div>
 
-    <div>
+    <div class="flex flex-col">
         {{ form_label(form.cpf_cnpj, 'CPF ou CPNJ:', {'label_attr': {'class': 'block text-sm font-medium text-black-700'}}) }}
         {{ form_widget(form.cpf_cnpj, {
             'attr': {
                 'placeholder': 'Informe o CPF ou CNPJ da empresa',
-                'class': 'input-field cpf-cnpj-mask w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500',
+                'class': 'input-field cpf-cnpj-mask w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500',
                 'data-action': 'blur->store-form#validateField',
                 'data-field': 'cpf_cnpj'
             }
@@ -47,12 +50,12 @@
         </div>
     </div>
 
-    <div>
+    <div class="flex flex-col">
         {{ form_label(form.phone, 'Contato:', {'label_attr': {'class': 'block text-sm font-medium text-black-700'}}) }}
         {{ form_widget(form.phone, {
             'attr': {
                 'placeholder': 'Padrão (0XX)XXXX-XXXX',
-                'class': 'input-field phone-mask w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500',
+                'class': 'input-field phone-mask w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500',
                 'data-action': 'blur->store-form#validateField',
                 'data-field': 'phone'
             }
@@ -62,12 +65,12 @@
         </div>
     </div>
 
-    <div>
+    <div class="flex flex-col">
         {{ form_label(form.postal_code, 'Código Postal:', {'label_attr': {'class': 'block text-sm font-medium text-black-700'}}) }}
         {{ form_widget(form.postal_code, {
             'attr': {
                 'placeholder': 'Padrão XXXXX-XXX',
-                'class': 'input-field cep-mask w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500',
+                'class': 'input-field cep-mask w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500',
                 'data-action': 'blur->store-form#validateField',
                 'data-field': 'postal_code'
             }
@@ -77,12 +80,12 @@
         </div>
     </div>
 
-    <div>
+    <div class="flex flex-col">
         {{ form_label(form.address, 'Endereço', {'label_attr': {'class': 'block text-sm font-medium text-black-700'}}) }}
         {{ form_widget(form.address, {
             'attr': {
                 'placeholder': 'Informe o endereço',
-                'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500',
+                'class': 'input-field w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500',
                 'data-action': 'blur->store-form#validateField',
                 'data-field': 'address'
             }
@@ -97,7 +100,7 @@
         {{ form_widget(form.address_number, {
             'attr': {
                 'placeholder': 'Número da rua',
-                'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500',
+                'class': 'input-field w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500',
                 'data-action': 'blur->store-form#validateField',
                 'data-field': 'address_number'
             }
@@ -112,7 +115,7 @@
         {{ form_widget(form.city, {
             'attr': {
                 'placeholder': 'Selecione a cidade',
-                'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500',
+                'class': 'input-field w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500',
                 'data-action': 'change->store-form#validateField',
                 'data-field': 'city'
             }
@@ -121,7 +124,6 @@
             {{ form_errors(form.city) }}
         </div>
     </div>
-</div>
 
 <div class="flex items-center space-x-4 mt-4">
     <label class="text-sm font-medium text-black-700">Ativo</label>
@@ -145,7 +147,7 @@
          }) }}
     </div>
 </div>
-
+</div>
 {{ form_rest(form) }}
 {{ form_end(form) }}
 

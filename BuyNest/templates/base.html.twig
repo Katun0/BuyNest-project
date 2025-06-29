@@ -17,6 +17,7 @@
 
         {% block javascripts %}
             {{ encore_entry_link_tags('app') }}
+            <script src="https://unpkg.com/alpinejs" defer></script>
         {% endblock %}
 
     </head>
@@ -35,8 +36,8 @@
                         </div>
                         <!-- Primary Navbar items -->
                         <div class="hidden md:flex items-center space-x-1">
-                            <a href="{{ path('app_home') }}" class="py-4 px-2 text-black-500 font-semibold hover:text-indigo-600 hover:border-b-4 hover:border-indigo-600 transition duration-300">Home</a>
-                            <a href="{{ path('app_supplier') }}" class="py-4 px-2 text-black-500 font-semibold hover:text-indigo-600 hover:border-b-4 hover:border-indigo-600 transition duration-300">Fornecedores</a>
+                            <a href="{{ path('app_home') }}" class="py-4 px-2 text-black-500 font-semibold hover:text-indigo-600 hover:border-b-4 hover:border-indigo-600 transition duration-300">Catálogo</a>
+                            <a href="{{ path('app_supplier') }}" class="py-4 px-2 text-black-500 font-semibold hover:text-indigo-600 hover:border-b-4 hover:border-indigo-600 transition duration-300"></i> Fornecedores</a>
                             <a href="{{ path('app_product') }}" class="py-4 px-2 text-black-500 font-semibold hover:text-indigo-600 hover:border-b-4 hover:border-indigo-600 transition duration-300">Produtos</a>
                             <a href="{{ path('app_store') }}" class="py-4 px-2 text-black-500 font-semibold hover:text-indigo-600 hover:border-b-4 hover:border-indigo-600 transition duration-300">Lojas</a>
                             <a href="{{ path('app_inventory') }}" class="py-4 px-2 text-black-500 font-semibold hover:text-indigo-600 hover:border-b-4 hover:border-indigo-600 transition duration-300">Inventário</a>
@@ -44,7 +45,11 @@
                     </div>
                     <!-- Secondary Navbar items -->
                     <div class="hidden md:flex items-center space-x-3">
-                        <a href="{{ path('app_login') }}" class="py-2 px-4 font-medium text-white bg-indigo-600 rounded hover:bg-indigo-500 transition duration-300">Login</a>
+                        <a href="{{ path('app_logout') }}" class="py-4 px-2 text-black-500 font-semibold hover:text-indigo-600 hover:border-b-4 hover:border-indigo-600 transition duration-300">
+                            <i class="fa-solid fa-user"></i>
+                        </a>
+                        <a href="#" class="py-4 px-2 text-black-500 font-semibold hover:text-indigo-600 hover:border-b-4 hover:border-indigo-600 transition duration-300">
+                            <i class="fa-solid fa-cart-shopping"></i></a>
                     </div>
                     <!-- Mobile menu button -->
                     <div class="md:hidden flex items-center">
@@ -62,7 +67,7 @@
                     <li><a href="{{ path('app_home') }}" class="block text-sm px-4 py-2 text-indigo-600 font-semibold">Home</a></li>
                     <li><a href="{{ path('app_supplier') }}" class="block text-sm px-4 py-2 hover:bg-indigo-100 hover:text-indigo-600 transition duration-300">Fornecedores</a></li>
                     <li><a href="{{ path('app_product') }}" class="block text-sm px-4 py-2 hover:bg-indigo-100 hover:text-indigo-600 transition duration-300">Produtos</a></li>
-                    <li><a href="{{ path('app_login') }}" class="block text-sm px-4 py-2 hover:bg-indigo-100 hover:text-indigo-600 transition duration-300">Login</a></li>
+                    <li><a href="{{ path('app_logout') }}" class="block text-sm px-4 py-2 hover:bg-indigo-100 hover:text-indigo-600 transition duration-300">Login</a></li>
                 </ul>
             </div>
         </nav>

@@ -1,13 +1,13 @@
 {{ form_start(form, {'attr': {'id': 'inventory-form', 'data-turbo-stream': 'true', 'data-controller': 'inventory-form'}}) }}
 {{ form_errors(form) }}
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<div class="bg-gray-100 rounded-xl shadow-lg p-6 flex flex-col md:flex-row gap-6">
     <div>
         {{ form_label(form.product, 'Produto:', {'label_attr': {'class': 'block text-sm font-medium text-black-700'}}) }}
         {{ form_widget(form.product, {
             'attr': {
                 'placeholder': 'Selecione o produto',
-                'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500',
+                'class': 'w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500',
                 'data-action': 'change->inventory-form#validateField',
                 'data-field': 'product'
             }
@@ -22,7 +22,7 @@
         {{ form_widget(form.store, {
             'attr': {
                 'placeholder': 'Selecione a loja',
-                'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500',
+                'class': 'w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500',
                 'data-action': 'change->inventory-form#validateField',
                 'data-field': 'store'
             }
@@ -37,7 +37,7 @@
         {{ form_widget(form.quantity, {
             'attr': {
                 'placeholder': 'Informe a quantidade em estoque',
-                'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500',
+                'class': 'input-field w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500',
                 'data-action': 'blur->inventory-form#validateField',
                 'data-field': 'quantity'
             }
@@ -52,7 +52,7 @@
         {{ form_widget(form.price, {
             'attr': {
                 'placeholder': 'Informe o preço ',
-                'class': 'input-field price-mask w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500',
+                'class': 'input-field price-mask w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500',
                 'data-action': 'blur->inventory-form#validateField',
                 'data-field': 'price'
             }
@@ -61,8 +61,6 @@
             {{ form_errors(form.price) }}
         </div>
     </div>
-</div>
-
 
 <div class="flex justify-between mt-6">
     <div class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
@@ -72,6 +70,7 @@
              }
          }) }}
     </div>
+</div>
 </div>
 
 {{ form_rest(form) }}

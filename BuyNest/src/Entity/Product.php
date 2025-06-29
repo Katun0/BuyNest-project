@@ -47,9 +47,16 @@ class Product
     #[ORM\OneToMany(targetEntity: Inventory::class, mappedBy: 'product')]
     private Collection $inventories;
 
+    /**
+     * @var Collection<int, ItemOnCart>
+     */
+    #[ORM\OneToMany(targetEntity: ItemOnCart::class, mappedBy: 'productID')]
+    private Collection $itemOnCarts;
+
     public function __construct()
     {
         $this->inventories = new ArrayCollection();
+        $this->itemOnCarts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -180,6 +187,36 @@ class Product
     public function setPhoto(?string $photo): static
     {
         $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ItemOnCart>
+     */
+    public function getItemOnCarts(): Collection
+    {
+        return $this->itemOnCarts;
+    }
+
+    public function addItemOnCart(ItemOnCart $itemOnCart): static
+    {
+        if (!$this->itemOnCarts->contains($itemOnCart)) {
+            $this->itemOnCarts->add($itemOnCart);
+            $itemOnCart->setProductID($this);
+        }
+
+        return $this;
+    }
+
+    public function removeItemOnCart(ItemOnCart $itemOnCart): static
+    {
+        if ($this->itemOnCarts->removeElement($itemOnCart)) {
+            // set the owning side to null (unless already changed)
+            if ($itemOnCart->getProductID() === $this) {
+                $itemOnCart->setProductID(null);
+            }
+        }
 
         return $this;
     }

@@ -62,5 +62,7 @@ export default class extends Controller {
         .catch(error => {
             console.error('Error saving form:', error);
         });
+
     }
+
 }
