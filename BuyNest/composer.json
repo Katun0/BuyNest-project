@@ -38,6 +38,7 @@
         "symfony/string": "7.1.*",
         "symfony/translation": "7.1.*",
         "symfony/twig-bundle": "7.1.*",
+        "symfony/ux-dropzone": "^2.26",
         "symfony/ux-live-component": "^2.26",
         "symfony/ux-toggle-password": "^2.26",
         "symfony/ux-turbo": "^2.26",

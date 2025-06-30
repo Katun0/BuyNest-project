@@ -1,109 +1,132 @@
 {{ form_start(form, {'attr': {'id': 'product-form', 'data-turbo-stream': 'true'}}) }}
 {{ form_errors(form) }}
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    <div>
-        {{ form_label(form.name, 'Nome:', {'label_attr': {'class': 'block text-sm font-medium text-black-700'}}) }}
-        {{ form_widget(form.name, {
-            'attr': {
-                'placeholder': 'Informe o Nome',
-                'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500',
-                'data-action': 'blur->product-form#validateField',
-                'data-field': 'name'
-            }
-        }) }}
-        <div id="product_name_error">
-            {{ form_errors(form.name) }}
+    <div class="bg-gray-100 rounded-xl shadow-lg p-6 flex flex-col md:flex-row gap-6">
+
+        <!-- Seção do Formulário -->
+        <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
+
+            <!-- Nome -->
+            <div class="flex flex-col">
+                {{ form_label(form.name, 'Nome:', {'label_attr': {'class': 'block font-semibold mb-1'}}) }}
+                {{ form_widget(form.name, {
+                    'attr': {
+                        'placeholder': 'Informe o Nome',
+                        'class': 'w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500',
+                        'data-action': 'blur->product-form#validateField',
+                        'data-field': 'name'
+                    }
+                }) }}
+                <div id="product_name_error">{{ form_errors(form.name) }}</div>
+            </div>
+
+            <!-- Descrição -->
+            <div class="flex flex-col">
+                {{ form_label(form.description, 'Descrição:', {'label_attr': {'class': 'block font-semibold mb-1'}}) }}
+                {{ form_widget(form.description, {
+                    'attr': {
+                        'placeholder': 'Informe a Descrição',
+                        'class': 'w-full p-2 rounded-md border border-gray-300 resize-none focus:outline-none focus:ring-2 focus:ring-purple-500',
+                        'data-action': 'blur->product-form#validateField',
+                        'data-field': 'description'
+                    }
+                }) }}
+                <div id="product_description_error">{{ form_errors(form.description) }}</div>
+            </div>
+
+            <!-- Fornecedor -->
+            <div class="flex flex-col">
+                {{ form_label(form.supplier, 'Fornecedor:', {'label_attr': {'class': 'block font-semibold mb-1'}}) }}
+                {{ form_widget(form.supplier, {
+                    'attr': {
+                        'class': 'w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500',
+                        'data-action': 'change->product-form#validateField',
+                        'data-field': 'supplier'
+                    }
+                }) }}
+                <div id="product_supplier_error">{{ form_errors(form.supplier) }}</div>
+            </div>
+
+            <!-- Categoria -->
+            <div class="flex flex-col">
+                {{ form_label(form.category, 'Categoria:', {'label_attr': {'class': 'block font-semibold mb-1'}}) }}
+                {{ form_widget(form.category, {
+                    'attr': {
+                        'class': 'w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500',
+                        'data-action': 'change->product-form#validateField',
+                        'data-field': 'category'
+                    }
+                }) }}
+                <div id="product_category_error">{{ form_errors(form.category) }}</div>
+                <a href="#" class="text-sm text-blue-600 mt-1">+ Nova Categoria</a>
+            </div>
+
+            <!-- Ativo -->
+            <div class="flex items-center gap-2 mt-2">
+                <label class="font-semibold">Ativo</label>
+                <label class="relative inline-flex items-center cursor-pointer">
+                    {{ form_widget(form.active, {'attr': {'class': 'sr-only peer'}}) }}
+                    <div
+                            class="w-11 h-6 bg-gray-300 rounded-full peer peer-focus:ring-2 peer-focus:ring-blue-500 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-500">
+                    </div>
+                </label>
+            </div>
+
+            <!-- Botão -->
+            <div class="mt-4">
+                <button
+                        {{ form_widget(form.submit, {
+                            'attr': {
+
+                            'class':"bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-md shadow-md transition",
+                            'data-action':"click->product-form#save"}
+                        }) }}
+                </button>
+            </div>
+        </div>
+
+        <!-- Seção da Foto -->
+        <div class="w-full md:w-64 bg-white rounded-xl p-4 shadow-md flex flex-col items-center">
+            <h2 class="font-semibold text-gray-700 mb-2">Foto do Produto</h2>
+            {{ form_widget(form.photo, {
+                'attr': {
+                    'class': 'mb-3 text-sm w-full text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-600 hover:file:bg-blue-700',
+                    'onchange': 'previewImage(event)'
+                }
+            }) }}
+
+            {% if product is defined and product.photo %}
+                <div class="mt-4">
+                    <p class="text-sm text-gray-500">Imagem atual:</p>
+                    <img src="{{ asset('uploads/products/' ~ product.photo) }}" alt="Foto atual" class="h-32 w-32 object-cover rounded-lg border border-gray-300" />
+                </div>
+            {% else %}
+                <div class="mt-4">
+                    <img id="preview" src="{{ asset('uploads/products/placeholder.png') }}"  class="w-full aspect-square border border-dashed border-gray-300 flex items-center justify-center text-gray-400 text-sm rounded-md">
+                </div>
+            {% endif %}
+            <div id="product_photo_error">{{ form_errors(form.photo) }}</div>
         </div>
     </div>
 
-    <div>
-        {{ form_label(form.description, 'Descrição:', {'label_attr': {'class': 'block text-sm font-medium text-black-700'}}) }}
-        {{ form_widget(form.description, {
-            'attr': {
-                'placeholder': 'Informe a Descrição',
-                'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500',
-                'data-action': 'blur->product-form#validateField',
-                'data-field': 'description'
-            }
-        }) }}
-        <div id="product_description_error">
-            {{ form_errors(form.description) }}
-        </div>
-    </div>
+<script>
+    function previewImage(event) {
+        const input = event.target;
+        const preview = document.getElementById('preview');
 
-    <div>
-        {{ form_label(form.supplier, 'Fornecedor:', {'label_attr': {'class': 'block text-sm font-medium text-black-700'}}) }}
-        {{ form_widget(form.supplier, {
-            'attr': {
-                'placeholder': 'Selecione o Fornecedor',
-                'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500',
-                'data-action': 'change->product-form#validateField',
-                'data-field': 'supplier'
-            }
-        }) }}
-        <div id="product_supplier_error">
-            {{ form_errors(form.supplier) }}
-        </div>
-    </div>
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
 
-    <div>
-        {{ form_label(form.category, 'Categoria:', {'label_attr': {'class': 'block text-sm font-medium text-black-700'}}) }}
-        {{ form_widget(form.category, {
-            'attr': {
-                'placeholder': 'Selecione a Categoria',
-                'class': 'input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500',
-                'data-action': 'change->product-form#validateField',
-                'data-field': 'category'
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.classList.remove('hidden');
             }
-        }) }}
-        <div id="product_category_error">
-            {{ form_errors(form.category) }}
-        </div>
-    </div>
-</div>
 
-<div class="mt-4">
-    {{ form_label(form.photo, 'Foto do Produto:', {'label_attr': {'class': 'block text-sm font-medium text-black-700'}}) }}
-    {{ form_widget(form.photo, {
-        'attr': {
-            'class': 'block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none',
-            'data-action': 'change->product-form#validateField',
-            'data-field': 'photo'
+            reader.readAsDataURL(input.files[0]);
         }
-    }) }}
-    <div id="product_photo_error">
-        {{ form_errors(form.photo) }}
-    </div>
-    {% if product is defined and product.photo %}
-        <div class="mt-2">
-            <img src="{{ asset('uploads/products/' ~ product.photo) }}" alt="Foto do produto" class="h-32 w-32 object-cover rounded-lg">
-        </div>
-    {% endif %}
-</div>
+    }
+</script>
 
-<div class="flex items-center space-x-4 mt-4">
-    <label class="text-sm font-medium text-black-700">Ativo</label>
-    <label class="relative inline-flex items-center cursor-pointer">
-        {{ form_widget(form.active, {
-            'attr': {
-                'class': 'sr-only peer'
-            }
-        }) }}
-        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-500 rounded-full peer dark:bg-gray-700 peer-checked:bg-blue-600 transition-all duration-300"></div>
-        <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform duration-300 peer-checked:translate-x-full"></div>
-    </label>
-</div>
-
-<div class="flex justify-between mt-6">
-    <div class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-         {{ form_widget(form.submit, {
-             'attr': {
-                 'data-action': 'click->product-form#save'
-             }
-         }) }}
-    </div>
-</div>
 
 {{ form_rest(form) }}
 {{ form_end(form) }}

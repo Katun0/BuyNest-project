@@ -7,47 +7,86 @@
 {% endblock %}
 
 {% block body %}
-    <div class="bg-white">
+    <div class="bg-white" x-data="{ modalOpen: false, modalProduct: {} }">
+        <h2 class="text-2xl font-bold tracking-tight text-gray-900">Catálogo de Produtos</h2>
         <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-            <h2 class="text-2xl font-bold tracking-tight text-gray-900">Catálogo de Produtos</h2>
 
             <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                 {% for product in products %}
-                <div class="group relative">
-                    {% if product.photo %}
-                        <img src="/uploads/products/{{ product.photo }}" alt="{{ product.name }}" class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80" />
-                    {% else %}
-                        <img src="/uploads/products/palceholder.jpg" alt="{{ product.name }}" class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80" />
-                    {% endif %}
-                    <div class="mt-4 flex justify-between">
-                        <div>
-                            <h3 class="text-sm text-gray-700">
-                                <a href="#">
-                                    <span aria-hidden="true" class="absolute inset-0"></span>
-                                    {{ product.name }}
-                                </a>
-                            </h3>
-                            <p class="mt-1 text-sm text-gray-500">{{ product.category.name }}</p>
-                        </div>
-                        {% set lowestPrice = null %}
-                        {% for inventory in product.inventories %}
-                            {% if lowestPrice is null or inventory.price < lowestPrice %}
-                                {% set lowestPrice = inventory.price %}
-                            {% endif %}
-                        {% endfor %}
-                        {% if lowestPrice is not null %}
-                            <p class="text-sm font-medium text-gray-900">R$ {{ lowestPrice|number_format(2, ',', '.') }}</p>
-                        {% else %}
-                            <p class="text-sm font-medium text-gray-900">Preço indisponível</p>
+                    {% set lowestPrice = null %}
+                    {% for inventory in product.inventories %}
+                        {% if lowestPrice is null or inventory.price < lowestPrice %}
+                            {% set lowestPrice = inventory.price %}
                         {% endif %}
-                    </div>
-                </div>
+                    {% endfor %}
+                    {% set priceFormatted = lowestPrice is not null ? ('R$ ' ~ lowestPrice|number_format(2, ',', '.')) : 'Indisponível' %}
+                    <div class="group relative bg-white rounded-lg shadow p-2">
+                        {% set photo = product.photo ? asset('uploads/products/' ~ product.photo) : asset('uploads/products/placeholder.png') %}
+                        <img src="{{ photo }}" alt="{{ product.name }}" class="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80" />
+
+                        <div class="mt-4 flex justify-between">
+                            <div>
+                                <h3 class="text-sm text-gray-700">{{ product.name }}</h3>
+                                <p class="mt-1 text-sm text-gray-500">{{ product.category.name }}</p>
+                            </div>
+                            <p class="text-sm font-medium text-gray-900">{{ priceFormatted }}</p>
+                        </div>
+
+                        <p class="mt-1 text-sm text-gray-500">
+                            Estoque: {{ quantities[product.id]|default('Fora de estoque') }}
+                        </p>
+
+                        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <button
+                                    @click="modalProduct = {
+                                name: '{{ product.name|e('js') }}',
+                                description: '{{ product.description|e('js') }}',
+                                category: '{{ product.category.name|e('js') }}',
+                                photo: '{{ photo }}',
+                                price: '{{ priceFormatted }}',
+                                stock: '{{ quantities[product.id]|default('Fora de estoque') }}'
+                            }; modalOpen = true"
+                                    class="px-4 py-2 bg-purple-600 text-white text-sm font-semibold rounded hover:bg-purple-700 transition">
+                                Ver Detalhes
+                            </button>
+
+                            <hr class="my-4">
+                            <a href="{{ path('app_cart_add', {'id': product.id}) }}" class="px-4 py-2 bg-purple-600 text-white text-sm font-semibold rounded hover:bg-purple-700 transition">
+                                Adicionar ao Carrinho
+                            </a>
+                        </div>
+                        </div>
+
                 {% else %}
-                <div class="col-span-full text-center py-8">
-                    <p class="text-gray-500">Nenhum produto disponível no momento.</p>
-                </div>
-                {% endfor %}
+                    <div class="col-span-full text-center py-8">
+                        <p class="text-gray-500">Nenhum produto disponível no momento.</p>
+                    </div>
+            </div>
+        </div>
+        {% endfor %}
+        <div
+                x-show="modalOpen"
+                x-transition
+                class="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center px-4"
+        >
+            <div class="bg-white w-full max-w-lg rounded-xl shadow-lg p-6 relative" @click.outside="modalOpen = false">
+                <button class="absolute top-2 right-3 text-gray-500 hover:text-gray-800" @click="modalOpen = false">
+                    <i class="fas fa-times"></i>
+                </button>
+                <template x-if="modalProduct">
+                    <div>
+                        <img :src="modalProduct.photo" alt="" class="w-full object-cover rounded-lg mb-4">
+                        <h2 class="text-xl font-bold text-gray-800" x-text="modalProduct.name"></h2>
+                        <p class="text-gray-600 mt-2" x-text="modalProduct.description"></p>
+                        <p class="text-sm text-gray-500 mt-1" x-text="'Categoria: ' + modalProduct.category"></p>
+                        <p class="text-sm text-gray-500" x-text="'Estoque: ' + modalProduct.stock"></p>
+                        <p class="text-lg font-semibold text-purple-700 mt-2" x-text="modalProduct.price"></p>
+
+                    </div>
+                </template>
             </div>
         </div>
     </div>
+
 {% endblock %}
+

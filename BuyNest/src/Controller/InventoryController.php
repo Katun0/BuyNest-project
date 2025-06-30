@@ -11,10 +11,12 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\UX\TurboBundle\TurboStreamResponse;
 
 final class InventoryController extends AbstractController
 {
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/inventory', name: 'app_inventory')]
     public function index(
         EntityManagerInterface $entityManager,
@@ -76,7 +78,7 @@ final class InventoryController extends AbstractController
         ]);
     }
 
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/inventory/{id}/edit-form', name: 'app_inventory_edit_form')]
     public function editForm(Inventory $inventory): Response
     {
@@ -90,7 +92,7 @@ final class InventoryController extends AbstractController
             'inventory' => $inventory,
         ]);
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/inventory/{id}/edit', name: 'app_inventory_edit')]
     public function edit(
         Inventory $inventory,
@@ -153,7 +155,7 @@ final class InventoryController extends AbstractController
 
         return $this->redirectToRoute('app_inventory');
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/inventory/validate/{field}', name: 'app_inventory_validate_field', methods: ['POST'])]
     public function validateField(
         Request $request,

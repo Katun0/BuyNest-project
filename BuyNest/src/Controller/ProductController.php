@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\UX\TurboBundle\TurboStreamResponse;
-
+{#[IsGranted('ROLE_ADMIN')]
 final class ProductController extends AbstractController
 {
     #[Route('/product', name: 'app_product')]
@@ -270,4 +270,4 @@ final class ProductController extends AbstractController
             ]
         ]);
     }
-}
+}}
