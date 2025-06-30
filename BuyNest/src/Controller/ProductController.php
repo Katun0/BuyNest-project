@@ -11,11 +11,13 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\UX\TurboBundle\TurboStreamResponse;
-{#[IsGranted('ROLE_ADMIN')]
+#[IsGranted('ROLE_ADMIN')]
 final class ProductController extends AbstractController
 {
+#[IsGranted('ROLE_ADMIN')]
     #[Route('/product', name: 'app_product')]
     public function index(
         EntityManagerInterface $entityManager,
@@ -104,7 +106,7 @@ final class ProductController extends AbstractController
         ]);
     }
 
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/product/{id}/edit-form', name: 'app_product_edit_form')]
     public function editForm(Product $product): Response
     {
@@ -118,7 +120,7 @@ final class ProductController extends AbstractController
             'product' => $product,
         ]);
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/product/{id}/edit', name: 'app_product_edit')]
     public function edit(
         Product $product,
@@ -215,7 +217,7 @@ final class ProductController extends AbstractController
 
         return $this->redirectToRoute('app_product');
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/product/validate/{field}', name: 'app_product_validate_field', methods: ['POST'])]
     public function validateField(
         Request $request,
@@ -249,11 +251,13 @@ final class ProductController extends AbstractController
         return $errors;
     }
 
+#[IsGranted('ROLE_ADMIN')]
     #[Route('/product/toggle-inactive', name: 'app_product_toggle_inactive', methods: ['GET'])]
     public function toggleInactive(
         Request $request,
         ProductRepository $productRepository
-    ): Response {
+    ): Response
+    {
         $showInactive = $request->query->getBoolean('show_inactive', false);
 
         $products = $showInactive
@@ -270,4 +274,5 @@ final class ProductController extends AbstractController
             ]
         ]);
     }
-}}
+
+}

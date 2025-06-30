@@ -4,15 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff23ff7f-4c0a-4c72-9547-c1f4999482a3" name="Changes" comment="Método do controller addToCart funcional para adicionar item e somar quantidade">
+    <list default="true" id="ff23ff7f-4c0a-4c72-9547-c1f4999482a3" name="Changes" comment="ajustes de segurança&#10; - Feito filtro para somente usuários admin poderem cadastrar produto, inventário, loja e fornecedor">
+      <change afterPath="$PROJECT_DIR$/templates/cart/cart.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/products/2536600-6858a9927c896.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/products/Captura-de-tela-2025-03-14-150120-685b499559397.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/products/capibara-6858aab577b3d.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/products/pinguim-6858a9a455074.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/CartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CartController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/InventoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/InventoryController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/StoreController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/StoreController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/SupplierController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SupplierController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ItemOnCartRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ItemOnCartRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ShoppingCartRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ShoppingCartRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/home.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -287,6 +292,9 @@
       </set>
     </attachedChunks>
   </component>
+  <component name="StructureViewState">
+    <option name="selectedTab" value="Twig" />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="ff23ff7f-4c0a-4c72-9547-c1f4999482a3" name="Changes" comment="" />
@@ -326,7 +334,10 @@
       <workItem from="1751024436429" duration="1702000" />
       <workItem from="1751026292076" duration="55000" />
       <workItem from="1751026449852" duration="11203000" />
-      <workItem from="1751160247215" duration="15654000" />
+      <workItem from="1751160247215" duration="15835000" />
+      <workItem from="1751212677502" duration="11000" />
+      <workItem from="1751222451762" duration="5817000" />
+      <workItem from="1751287392242" duration="12903000" />
     </task>
     <task id="LOCAL-00001" summary="Criação das entidades referentes a país, estado, cidade e fornecedor">
       <option name="closed" value="true" />
@@ -416,7 +427,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751180024290</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="ajustes de segurança&#10; - Feito filtro para somente usuários admin poderem cadastrar produto, inventário, loja e fornecedor">
+      <option name="closed" value="true" />
+      <created>1751181121713</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1751181121715</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -456,6 +475,7 @@
     <MESSAGE value="Edição, soft delete e módulo de loja funcionando" />
     <MESSAGE value="Autenticação de Usuário e criação do carrinho funcionais" />
     <MESSAGE value="Método do controller addToCart funcional para adicionar item e somar quantidade" />
-    <option name="LAST_COMMIT_MESSAGE" value="Método do controller addToCart funcional para adicionar item e somar quantidade" />
+    <MESSAGE value="ajustes de segurança&#10; - Feito filtro para somente usuários admin poderem cadastrar produto, inventário, loja e fornecedor" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajustes de segurança&#10; - Feito filtro para somente usuários admin poderem cadastrar produto, inventário, loja e fornecedor" />
   </component>
 </project>

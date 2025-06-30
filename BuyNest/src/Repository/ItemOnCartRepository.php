@@ -16,6 +16,15 @@ class ItemOnCartRepository extends ServiceEntityRepository
         parent::__construct($registry, ItemOnCart::class);
     }
 
+
+    public function findByCart(int $cartId): array
+    {
+        return $this->createQueryBuilder('i')
+            ->andWhere('i.cart = :cartId')
+            ->setParameter('cartId', $cartId)
+            ->getQuery()
+            ->getResult();
+    }
 //    /**
 //     * @return ItemOnCart[] Returns an array of ItemOnCart objects
 //     */
