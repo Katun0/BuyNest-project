@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\ShoppingCart;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -14,6 +15,15 @@ class ShoppingCartRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, ShoppingCart::class);
+    }
+
+    public function findOneByUser(User $user): ?ShoppingCart
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.userID = :user')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 
 //    /**
