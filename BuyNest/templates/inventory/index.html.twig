@@ -24,7 +24,7 @@
     <div id="inventory-form-errors"></div>
 
     <div class="flex justify-between items-center my-6">
-        <h2 class="text-xl font-semibold">Lista de Itens de Inventário</h2>
+        <h2 class="text-xl font-semibold text-white">Lista de Itens de Inventário</h2>
     </div>
 
     <div class="overflow-x-auto">
@@ -165,6 +165,16 @@
                     // Trigger input event to apply mask to existing values
                     input.dispatchEvent(new Event('input'));
                 });
+                    const forms = document.querySelectorAll('form');
+                    forms.forEach(form => {
+                        form.addEventListener('submit', function() {
+                            priceInputs.forEach(input => {
+                // Remove tudo que não for número ou vírgula/ponto
+                                let raw = input.value.replace(/[^\d,.-]/g, '').replace(',', '.');
+                                input.value = raw;
+                            });
+                         });
+                    });
 
             }
 
