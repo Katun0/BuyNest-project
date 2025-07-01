@@ -936,11 +936,11 @@
     idiomorph "^0.3.0"
 
 "@symfony/ux-toggle-password@file:vendor/symfony/ux-toggle-password/assets":
-  version "2.26.0"
+  version "2.26.1"
   resolved "file:vendor/symfony/ux-toggle-password/assets"
 
 "@symfony/ux-turbo@file:vendor/symfony/ux-turbo/assets":
-  version "2.26.0"
+  version "2.26.1"
   resolved "file:vendor/symfony/ux-turbo/assets"
 
 "@symfony/webpack-encore@^5.1.0":
@@ -2365,11 +2365,6 @@ fresh@0.5.2:
   version "0.5.2"
   resolved "https://registry.npmjs.org/fresh/-/fresh-0.5.2.tgz"
   integrity sha512-zJ2mQYM18rEFOudeV4GShTGIQ7RbzA7ozbU9I/XBpm7kqgMywgmylMwXHxZJmkVoYkna9d2pVXVXPdYTP9ej8Q==
-
-fsevents@~2.3.2:
-  version "2.3.3"
-  resolved "https://registry.npmjs.org/fsevents/-/fsevents-2.3.3.tgz"
-  integrity sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==
 
 function-bind@^1.1.2:
   version "1.1.2"

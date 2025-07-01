@@ -163,14 +163,16 @@
                             {{ form_errors(registrationForm.password) }}
 
                         </div>
-
-                    <div class=" flex flex-col">
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Tipo de conta</label>
-                        {{ form_widget(registrationForm.roles, {
-                            'attr': {
-                                'class': 'w-full input-field px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-indigo-500'
-                            }
-                        }) }}
+                    <div class=" flex flex-col gap-2">
+                        <label class="block text-sm font-medium gap-2 text-gray-700 mb-1">Tipo de conta</label>
+                        <div class="flex gap-7">
+                            {% for choice in registrationForm.roles %}
+                            <label class="flex items-center gap-1 text-sm text-gray-700" >
+                                {{ form_widget(choice) }}
+                                {{ form_label(choice) }}
+                            </label>
+                        {% endfor %}
+                        </div>
                     </div>
 
                         <div class="flex items-center">
