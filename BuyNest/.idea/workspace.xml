@@ -4,12 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff23ff7f-4c0a-4c72-9547-c1f4999482a3" name="Changes" comment="Criação das entidades referentes a país, estado, cidade e fornecedor">
-      <change beforePath="$PROJECT_DIR$/.env.dev" beforeDir="false" afterPath="$PROJECT_DIR$/.env.dev" afterDir="false" />
+    <list default="true" id="ff23ff7f-4c0a-4c72-9547-c1f4999482a3" name="Changes" comment="ajustes de segurança&#10; - Feito filtro para somente usuários admin poderem cadastrar produto, inventário, loja e fornecedor">
+      <change afterPath="$PROJECT_DIR$/templates/cart/cart.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/City.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/City.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Supplier.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Supplier.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/products/2536600-6858a9927c896.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/products/Captura-de-tela-2025-03-14-150120-685b499559397.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/products/capibara-6858aab577b3d.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/products/pinguim-6858a9a455074.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/CartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CartController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProductController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SupplierController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SupplierController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ItemOnCartRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ItemOnCartRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ShoppingCartRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ShoppingCartRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/home.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +27,14 @@
   <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <favorite-branches>
@@ -58,13 +74,15 @@
     &quot;repository&quot;: &quot;BuyNest-project&quot;
   }
 }</component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
+  </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/symfony/cache-contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/clock" />
       <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/runtime" />
-      <path value="$PROJECT_DIR$/vendor/symfony/asset-mapper" />
       <path value="$PROJECT_DIR$/vendor/symfony/form" />
       <path value="$PROJECT_DIR$/vendor/symfony/cache" />
       <path value="$PROJECT_DIR$/vendor/symfony/monolog-bundle" />
@@ -93,7 +111,6 @@
       <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
       <path value="$PROJECT_DIR$/vendor/symfony/type-info" />
       <path value="$PROJECT_DIR$/vendor/symfony/web-link" />
-      <path value="$PROJECT_DIR$/vendor/symfony/stimulus-bundle" />
       <path value="$PROJECT_DIR$/vendor/symfony/finder" />
       <path value="$PROJECT_DIR$/vendor/symfony/http-client-contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/intl" />
@@ -124,7 +141,6 @@
       <path value="$PROJECT_DIR$/vendor/symfony/browser-kit" />
       <path value="$PROJECT_DIR$/vendor/symfony/messenger" />
       <path value="$PROJECT_DIR$/vendor/symfony/notifier" />
-      <path value="$PROJECT_DIR$/vendor/symfony/ux-turbo" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-icu" />
       <path value="$PROJECT_DIR$/vendor/symfony/string" />
       <path value="$PROJECT_DIR$/vendor/psr/clock" />
@@ -191,6 +207,14 @@
       <path value="$PROJECT_DIR$/vendor/phar-io/version" />
       <path value="$PROJECT_DIR$/vendor/phar-io/manifest" />
       <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/ux-toggle-password" />
+      <path value="$PROJECT_DIR$/vendor/symfony/webpack-encore-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/stimulus-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/ux-turbo" />
+      <path value="$PROJECT_DIR$/vendor/symfony/asset-mapper" />
+      <path value="$PROJECT_DIR$/vendor/symfony/ux-live-component" />
+      <path value="$PROJECT_DIR$/vendor/symfony/ux-twig-component" />
+      <path value="$PROJECT_DIR$/vendor/symfony/ux-dropzone" />
     </include_path>
   </component>
   <component name="ProblemsViewState">
@@ -200,40 +224,76 @@
   &quot;associatedIndex&quot;: 6
 }</component>
   <component name="ProjectId" id="2xTFKF6LuZsw6h5CVZdKb4doDFM" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;PHPUnit.Main.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;Surdi&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/Joao_/OneDrive/Área de Trabalho/Faculdade/Prog 3/CRUD-Borsa/BuyNest-project/BuyNest&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.test.executor&quot;: &quot;Run&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Joao_\\AppData\\Local\\JetBrains\\PhpStorm 2024.3.5\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
+    ]
   }
 }</component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Joao_\OneDrive\Área de Trabalho\Faculdade\Prog 3\CRUD-Borsa\BuyNest-project\BuyNest\public\uploads\products" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.test">
     <configuration name="Main" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml.dist" scope="XML" use_alternative_configuration_file="true" />
       <method v="2" />
     </configuration>
+    <configuration name="test" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="test" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.test" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-PS-251.25410.148" />
-        <option value="bundled-php-predefined-a98d8de5180a-c5828cf854d9-com.jetbrains.php.sharedIndexes-PS-251.25410.148" />
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-PS-251.26927.60" />
+        <option value="bundled-php-predefined-a98d8de5180a-e5747d4f5a45-com.jetbrains.php.sharedIndexes-PS-251.26927.60" />
       </set>
     </attachedChunks>
+  </component>
+  <component name="StructureViewState">
+    <option name="selectedTab" value="Twig" />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -249,7 +309,35 @@
       <workItem from="1748259095125" duration="4004000" />
       <workItem from="1748434962198" duration="6845000" />
       <workItem from="1748521185075" duration="3488000" />
-      <workItem from="1748954321404" duration="1482000" />
+      <workItem from="1748954321404" duration="16876000" />
+      <workItem from="1748988272350" duration="2606000" />
+      <workItem from="1749077937797" duration="4617000" />
+      <workItem from="1749122920983" duration="12551000" />
+      <workItem from="1749167824144" duration="21724000" />
+      <workItem from="1749248269954" duration="5713000" />
+      <workItem from="1749468922201" duration="9052000" />
+      <workItem from="1749479920661" duration="3003000" />
+      <workItem from="1749496482280" duration="5281000" />
+      <workItem from="1749555106942" duration="16059000" />
+      <workItem from="1749642510335" duration="16351000" />
+      <workItem from="1749729707821" duration="3161000" />
+      <workItem from="1749823294607" duration="2766000" />
+      <workItem from="1750099870040" duration="822000" />
+      <workItem from="1750112417948" duration="425000" />
+      <workItem from="1750160550697" duration="3004000" />
+      <workItem from="1750201063697" duration="1938000" />
+      <workItem from="1750275111956" duration="3495000" />
+      <workItem from="1750444527863" duration="507000" />
+      <workItem from="1750813011966" duration="2335000" />
+      <workItem from="1750851480423" duration="18167000" />
+      <workItem from="1750940073395" duration="6341000" />
+      <workItem from="1751024436429" duration="1702000" />
+      <workItem from="1751026292076" duration="55000" />
+      <workItem from="1751026449852" duration="11203000" />
+      <workItem from="1751160247215" duration="15835000" />
+      <workItem from="1751212677502" duration="11000" />
+      <workItem from="1751222451762" duration="5817000" />
+      <workItem from="1751287392242" duration="12903000" />
     </task>
     <task id="LOCAL-00001" summary="Criação das entidades referentes a país, estado, cidade e fornecedor">
       <option name="closed" value="true" />
@@ -259,7 +347,95 @@
       <option name="project" value="LOCAL" />
       <updated>1748461962545</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Atualização do banco com as entidades principais modeladas (ainda em desenvolvimento)">
+      <option name="closed" value="true" />
+      <created>1748956944571</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1748956944571</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Ajustada a lógica de registro e adição do UserForm ao template de login">
+      <option name="closed" value="true" />
+      <created>1748982699349</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1748982699349</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Tela para cadastro de fornecedor">
+      <option name="closed" value="true" />
+      <created>1749122977246</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1749122977246</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Ajuste de dependências para utilização do stimulus e symfony UX">
+      <option name="closed" value="true" />
+      <created>1749496525618</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1749496525618</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Ajuste de dependências para utilização do stimulus e symfony UX">
+      <option name="closed" value="true" />
+      <created>1749496836878</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1749496836878</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Edição de formuláro Supplier funcionando, adição do turbo ao projeto">
+      <option name="closed" value="true" />
+      <created>1749564777743</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1749564777743</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Edição de formuláro Product funcionando, adicionado turbo para validação e atualização desse módulo">
+      <option name="closed" value="true" />
+      <created>1749582846482</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1749582846482</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Edição, soft delete e módulo de loja funcionando">
+      <option name="closed" value="true" />
+      <created>1749670181668</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1749670181668</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Autenticação de Usuário e criação do carrinho funcionais">
+      <option name="closed" value="true" />
+      <created>1751171926699</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1751171926699</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Método do controller addToCart funcional para adicionar item e somar quantidade">
+      <option name="closed" value="true" />
+      <created>1751180024290</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1751180024290</updated>
+    </task>
+    <task id="LOCAL-00012" summary="ajustes de segurança&#10; - Feito filtro para somente usuários admin poderem cadastrar produto, inventário, loja e fornecedor">
+      <option name="closed" value="true" />
+      <created>1751181121713</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1751181121715</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,7 +446,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/Fantin" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -278,6 +466,16 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Criação das entidades referentes a país, estado, cidade e fornecedor" />
-    <option name="LAST_COMMIT_MESSAGE" value="Criação das entidades referentes a país, estado, cidade e fornecedor" />
+    <MESSAGE value="Atualização do banco com as entidades principais modeladas (ainda em desenvolvimento)" />
+    <MESSAGE value="Ajustada a lógica de registro e adição do UserForm ao template de login" />
+    <MESSAGE value="Tela para cadastro de fornecedor" />
+    <MESSAGE value="Ajuste de dependências para utilização do stimulus e symfony UX" />
+    <MESSAGE value="Edição de formuláro Supplier funcionando, adição do turbo ao projeto" />
+    <MESSAGE value="Edição de formuláro Product funcionando, adicionado turbo para validação e atualização desse módulo" />
+    <MESSAGE value="Edição, soft delete e módulo de loja funcionando" />
+    <MESSAGE value="Autenticação de Usuário e criação do carrinho funcionais" />
+    <MESSAGE value="Método do controller addToCart funcional para adicionar item e somar quantidade" />
+    <MESSAGE value="ajustes de segurança&#10; - Feito filtro para somente usuários admin poderem cadastrar produto, inventário, loja e fornecedor" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajustes de segurança&#10; - Feito filtro para somente usuários admin poderem cadastrar produto, inventário, loja e fornecedor" />
   </component>
 </project>

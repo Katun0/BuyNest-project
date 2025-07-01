@@ -7,4 +7,17 @@ import './bootstrap.js';
  */
 import './styles/app.css';
 
+import { startStimulusApp } from '@symfony/stimulus-bridge';
+import { Turbo } from '@hotwired/turbo';
+
+// Start Turbo
+Turbo.start();
+
+export const app = startStimulusApp(require.context(
+    '@symfony/stimulus-bridge/lazy-controller-loader!./controllers',
+    true,
+    /\.[jt]sx?$/
+));
+
+
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');

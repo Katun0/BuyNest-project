@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Carrinho de Compras{% endblock %}
+
+{% block body %}
+    <section class="min-h-screen py-10">
+        <div class="max-w-5xl mx-auto">
+            <div class="bg-white text-black p-8 rounded-3xl shadow-md">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-bold items-center">Meu Carrinho</h2>
+                    <span class="text-sm text-gray-600">{{ items|length }} item{{ items|length == 1 ? '' : 's' }}</span>
+                </div>
+
+                {% for item in items %}
+                    <div class="flex items-center py-6 border-t border-gray-300">
+                        <img src="{{ asset('uploads/products/' ~ item.productID.photo) }}"
+                             alt="{{ item.productID.name }}"
+                             class="w-20 h-20 object-cover rounded-lg" />
+
+                        <div class="ml-5 flex-1">
+                            <h6 class="text-sm text-gray-500">{{ item.productID.category.name ?? 'Produto' }}</h6>
+                            <h4 class="text-lg font-semibold">{{ item.productID.name }}</h4>
+                        </div>
+
+                        <div class="flex items-center gap-2 mr-6">
+                            <a href="{{ path('cart_decrease', { id: item.id }) }}"
+                               class="px-2 py-1 border border-gray-400 text-gray-800 rounded hover:bg-gray-200 transition">−</a>
+
+                            <input type="number" value="{{ item.quantity }}" readonly
+                                   class="w-12 text-center bg-white border border-gray-400 rounded text-sm" />
+
+                            <a href="{{ path('cart_increase', { id: item.id }) }}"
+                               class="px-2 py-1 border border-gray-400 text-gray-800 rounded hover:bg-gray-200 transition">+</a>
+                        </div>
+
+                        <div class="w-28 text-right font-semibold text-gray-800 mr-6">
+                            R$ {{ (item.priceAtTime * item.quantity)|number_format(2, ',', '.') }}
+                        </div>
+
+                        <form method="post" action="#">
+                            <button type="submit" class="text-red-500 hover:text-red-700 text-xl">×</button>
+                        </form>
+                    </div>
+                {% else %}
+                    <p class="text-center text-gray-500 py-10">Seu carrinho está vazio.</p>
+                {% endfor %}
+
+                <div class="flex justify-between items-center border-t border-gray-300 pt-6 mt-6">
+                    <a href="{{ path('app_home') }}" class="text-gray-700 hover:underline text-sm">
+                        ← Voltar à loja
+                    </a>
+                    <h5 class="text-xl font-bold">
+                        Total: R$ {{ total|number_format(2, ',', '.') }}
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

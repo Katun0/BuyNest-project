@@ -1,0 +1,132 @@
+{{ form_start(form, {'attr': {'id': 'product-form', 'data-turbo-stream': 'true'}}) }}
+{{ form_errors(form) }}
+
+    <div class="bg-gray-100 rounded-xl shadow-lg p-6 flex flex-col md:flex-row gap-6">
+
+        <!-- Seção do Formulário -->
+        <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
+
+            <!-- Nome -->
+            <div class="flex flex-col">
+                {{ form_label(form.name, 'Nome:', {'label_attr': {'class': 'block font-semibold mb-1'}}) }}
+                {{ form_widget(form.name, {
+                    'attr': {
+                        'placeholder': 'Informe o Nome',
+                        'class': 'w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500',
+                        'data-action': 'blur->product-form#validateField',
+                        'data-field': 'name'
+                    }
+                }) }}
+                <div id="product_name_error">{{ form_errors(form.name) }}</div>
+            </div>
+
+            <!-- Descrição -->
+            <div class="flex flex-col">
+                {{ form_label(form.description, 'Descrição:', {'label_attr': {'class': 'block font-semibold mb-1'}}) }}
+                {{ form_widget(form.description, {
+                    'attr': {
+                        'placeholder': 'Informe a Descrição',
+                        'class': 'w-full p-2 rounded-md border border-gray-300 resize-none focus:outline-none focus:ring-2 focus:ring-purple-500',
+                        'data-action': 'blur->product-form#validateField',
+                        'data-field': 'description'
+                    }
+                }) }}
+                <div id="product_description_error">{{ form_errors(form.description) }}</div>
+            </div>
+
+            <!-- Fornecedor -->
+            <div class="flex flex-col">
+                {{ form_label(form.supplier, 'Fornecedor:', {'label_attr': {'class': 'block font-semibold mb-1'}}) }}
+                {{ form_widget(form.supplier, {
+                    'attr': {
+                        'class': 'w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500',
+                        'data-action': 'change->product-form#validateField',
+                        'data-field': 'supplier'
+                    }
+                }) }}
+                <div id="product_supplier_error">{{ form_errors(form.supplier) }}</div>
+            </div>
+
+            <!-- Categoria -->
+            <div class="flex flex-col">
+                {{ form_label(form.category, 'Categoria:', {'label_attr': {'class': 'block font-semibold mb-1'}}) }}
+                {{ form_widget(form.category, {
+                    'attr': {
+                        'class': 'w-full p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500',
+                        'data-action': 'change->product-form#validateField',
+                        'data-field': 'category'
+                    }
+                }) }}
+                <div id="product_category_error">{{ form_errors(form.category) }}</div>
+                <a href="#" class="text-sm text-blue-600 mt-1">+ Nova Categoria</a>
+            </div>
+
+            <!-- Ativo -->
+            <div class="flex items-center gap-2 mt-2">
+                <label class="font-semibold">Ativo</label>
+                <label class="relative inline-flex items-center cursor-pointer">
+                    {{ form_widget(form.active, {'attr': {'class': 'sr-only peer'}}) }}
+                    <div
+                            class="w-11 h-6 bg-gray-300 rounded-full peer peer-focus:ring-2 peer-focus:ring-blue-500 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-500">
+                    </div>
+                </label>
+            </div>
+
+            <!-- Botão -->
+            <div class="mt-4">
+                <button
+                        {{ form_widget(form.submit, {
+                            'attr': {
+
+                            'class':"bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-md shadow-md transition",
+                            'data-action':"click->product-form#save"}
+                        }) }}
+                </button>
+            </div>
+        </div>
+
+        <!-- Seção da Foto -->
+        <div class="w-full md:w-64 bg-white rounded-xl p-4 shadow-md flex flex-col items-center">
+            <h2 class="font-semibold text-gray-700 mb-2">Foto do Produto</h2>
+            {{ form_widget(form.photo, {
+                'attr': {
+                    'class': 'mb-3 text-sm w-full text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-600 hover:file:bg-blue-700',
+                    'onchange': 'previewImage(event)'
+                }
+            }) }}
+
+            {% if product is defined and product.photo %}
+                <div class="mt-4">
+                    <p class="text-sm text-gray-500">Imagem atual:</p>
+                    <img src="{{ asset('uploads/products/' ~ product.photo) }}" alt="Foto atual" class="h-32 w-32 object-cover rounded-lg border border-gray-300" />
+                </div>
+            {% else %}
+                <div class="mt-4">
+                    <img id="preview" src="{{ asset('uploads/products/placeholder.png') }}"  class="w-full aspect-square border border-dashed border-gray-300 flex items-center justify-center text-gray-400 text-sm rounded-md">
+                </div>
+            {% endif %}
+            <div id="product_photo_error">{{ form_errors(form.photo) }}</div>
+        </div>
+    </div>
+
+<script>
+    function previewImage(event) {
+        const input = event.target;
+        const preview = document.getElementById('preview');
+
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.classList.remove('hidden');
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+
+{{ form_rest(form) }}
+{{ form_end(form) }}

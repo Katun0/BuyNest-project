@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -20,9 +22,6 @@ class Product
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column]
-    private ?float $price = null;
-
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?Supplier $supplier = null;
 
@@ -38,6 +37,27 @@ class Product
 
     #[ORM\Column]
     private ?bool $active = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $photo = null;
+
+    /**
+     * @var Collection<int, Inventory>
+     */
+    #[ORM\OneToMany(targetEntity: Inventory::class, mappedBy: 'product')]
+    private Collection $inventories;
+
+    /**
+     * @var Collection<int, ItemOnCart>
+     */
+    #[ORM\OneToMany(targetEntity: ItemOnCart::class, mappedBy: 'productID')]
+    private Collection $itemOnCarts;
+
+    public function __construct()
+    {
+        $this->inventories = new ArrayCollection();
+        $this->itemOnCarts = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -68,17 +88,6 @@ class Product
         return $this;
     }
 
-    public function getPrice(): ?float
-    {
-        return $this->price;
-    }
-
-    public function setPrice(float $price): static
-    {
-        $this->price = $price;
-
-        return $this;
-    }
 
     public function getSupplier(): ?Supplier
     {
@@ -136,6 +145,78 @@ class Product
     public function setActive(bool $active): static
     {
         $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Inventory>
+     */
+    public function getInventories(): Collection
+    {
+        return $this->inventories;
+    }
+
+    public function addInventory(Inventory $inventory): static
+    {
+        if (!$this->inventories->contains($inventory)) {
+            $this->inventories->add($inventory);
+            $inventory->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInventory(Inventory $inventory): static
+    {
+        if ($this->inventories->removeElement($inventory)) {
+            // set the owning side to null (unless already changed)
+            if ($inventory->getProduct() === $this) {
+                $inventory->setProduct(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?string $photo): static
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ItemOnCart>
+     */
+    public function getItemOnCarts(): Collection
+    {
+        return $this->itemOnCarts;
+    }
+
+    public function addItemOnCart(ItemOnCart $itemOnCart): static
+    {
+        if (!$this->itemOnCarts->contains($itemOnCart)) {
+            $this->itemOnCarts->add($itemOnCart);
+            $itemOnCart->setProductID($this);
+        }
+
+        return $this;
+    }
+
+    public function removeItemOnCart(ItemOnCart $itemOnCart): static
+    {
+        if ($this->itemOnCarts->removeElement($itemOnCart)) {
+            // set the owning side to null (unless already changed)
+            if ($itemOnCart->getProductID() === $this) {
+                $itemOnCart->setProductID(null);
+            }
+        }
 
         return $this;
     }

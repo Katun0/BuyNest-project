@@ -1,0 +1,223 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BN - Fornecedores{% endblock %}
+
+{% block StyleSheets %}
+
+{% endblock %}
+
+{% block body %}
+    <div id="flash-messages">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="bg-{{ label == 'success' ? 'green' : 'red' }}-100 border border-{{ label == 'success' ? 'green' : 'red' }}-400 text-{{ label == 'success' ? 'green' : 'red' }}-700 px-4 py-3 rounded relative mb-4" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+    <div id="supplier-form">
+        {% include 'supplier/_form.html.twig' with {'form': form} %}
+    </div>
+
+    <div id="supplier-form-errors"></div>
+
+    <div class="flex justify-between items-center my-6">
+        <h2 class="text-xl font-semibold text-white">Lista de Fornecedores</h2>
+        <div class="flex items-center">
+            <label class="text-sm font-medium text-white">Mostrar Inativo </label>
+            <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox"
+                       id="show-inactive"
+                       name="show_inactive"
+                       class="sr-only peer"
+                       data-controller="supplier-inactive"
+                       {% if app.request.query.get('show_inactive') %}checked{% endif %}>
+                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-500 rounded-full peer dark:bg-gray-700 peer-checked:bg-blue-600 transition-all duration-300"></div>
+                <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform duration-300 peer-checked:translate-x-full"></div>
+            </label>
+
+        </div>
+    </div>
+
+    <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200 border border-gray-300">
+            <thead class="bg-gray-100">
+            <tr>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">ID</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Nome</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Razão Social</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">CPF/CNPJ</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Telefone</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">CEP</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Endereço</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Número</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Cidade</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Ativo</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Ações</th>
+            </tr>
+            </thead>
+            <tbody id="suppliers-table-body" class="bg-white divide-y divide-gray-200">
+                {% include 'supplier/_suppliers_table.html.twig' with {'suppliers': suppliers} %}
+            </tbody>
+        </table>
+    </div>
+
+    <div id="editModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <div class="mt-3">
+                <div class="flex justify-between items-center pb-3">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">Editar Fornecedor</h3>
+                    <button onclick="closeEditModal()" class="text-gray-400 hover:text-gray-500">
+                        <span class="text-2xl">&times;</span>
+                    </button>
+                </div>
+                <div id="modalContent">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block javascripts %}
+        <!-- Include vanilla-masker library -->
+        <script src="https://unpkg.com/vanilla-masker@1.2.0/lib/vanilla-masker.js"></script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Set up Turbo Stream event listeners
+                document.addEventListener('turbo:before-stream-render', function(event) {
+                    const targetElement = document.getElementById(event.target.target);
+                    if (targetElement && event.target.action === 'append') {
+                        if (targetElement.id === 'suppliers-table-body') {
+                            setTimeout(() => {
+                                applyInputMasks();
+                                setupEditButtons();
+                            }, 0);
+                        }
+                    }
+                });
+
+                // Set up edit buttons
+                setupEditButtons();
+
+                // Adicionar listener para fechar o modal
+                const modal = document.getElementById('editModal');
+                if (modal) {
+                    modal.addEventListener('click', function(e) {
+                        if (e.target === this) {
+                            closeEditModal();
+                        }
+                    });
+                }
+
+                // Handle show inactive checkbox
+                const showInactiveCheckbox = document.getElementById('show-inactive');
+                if (showInactiveCheckbox) {
+                    showInactiveCheckbox.addEventListener('change', function() {
+                        const url = new URL(window.location.href);
+                        if (this.checked) {
+                            url.searchParams.set('show_inactive', '1');
+                        } else {
+                            url.searchParams.delete('show_inactive');
+                        }
+                        window.location.href = url.toString();
+                    });
+                }
+
+                // Apply input masks to the main form
+                applyInputMasks();
+            });
+
+            function setupEditButtons() {
+                // Adicionar listeners para todos os botões de edição
+                const editButtons = document.querySelectorAll('.edit-button');
+                editButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const supplierId = this.getAttribute('data-supplier-id');
+                        openEditModal(supplierId);
+                    });
+                });
+            }
+
+            function openEditModal(supplierId) {
+                const modal = document.getElementById('editModal');
+                if (modal) {
+                    modal.classList.remove('hidden');
+
+                    // Carregar o formulário via Turbo Stream
+                    fetch(`/supplier/${supplierId}/edit-form`, {
+                        headers: {
+                            'Accept': 'text/vnd.turbo-stream.html, text/html, application/xhtml+xml'
+                        }
+                    })
+                        .then(response => response.text())
+                        .then(html => {
+                            const modalContent = document.getElementById('modalContent');
+                            if (modalContent) {
+                                modalContent.innerHTML = html;
+                                // Apply masks to the edit form after it's loaded
+                                applyInputMasks();
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Erro ao carregar o formulário:', error);
+                        });
+                }
+            }
+
+            function closeEditModal() {
+                const modal = document.getElementById('editModal');
+                if (modal) {
+                    modal.classList.add('hidden');
+                }
+            }
+
+            // Function to apply input masks
+            function applyInputMasks() {
+                // CPF/CNPJ mask
+                const cpfCnpjInputs = document.querySelectorAll('.cpf-cnpj-mask');
+                cpfCnpjInputs.forEach(input => {
+                    input.addEventListener('input', function() {
+                        const value = this.value.replace(/\D/g, '');
+                        if (value.length <= 11) {
+                            // CPF mask: 000.000.000-00
+                            VMasker(this).maskPattern('999.999.999-99');
+                        } else {
+                            // CNPJ mask: 00.000.000/0000-00
+                            VMasker(this).maskPattern('99.999.999/9999-99');
+                        }
+                    });
+                    // Trigger input event to apply mask to existing values
+                    input.dispatchEvent(new Event('input'));
+                });
+
+                // Phone mask
+                const phoneInputs = document.querySelectorAll('.phone-mask');
+                phoneInputs.forEach(input => {
+                    input.addEventListener('input', function() {
+                        const value = this.value.replace(/\D/g, '');
+                        if (value.length <= 10) {
+                            // Landline phone: (00) 0000-0000
+                            VMasker(this).maskPattern('(99) 9999-9999');
+                        } else {
+                            // Mobile phone: (00) 00000-0000
+                            VMasker(this).maskPattern('(99) 99999-9999');
+                        }
+                    });
+                    // Trigger input event to apply mask to existing values
+                    input.dispatchEvent(new Event('input'));
+                });
+
+                // CEP (postal code) mask
+                const cepInputs = document.querySelectorAll('.cep-mask');
+                cepInputs.forEach(input => {
+                    VMasker(input).maskPattern('99999-999');
+                });
+            }
+        </script>
+
+    {% endblock %}
+
+
+{% endblock %}

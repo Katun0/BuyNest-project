@@ -1,0 +1,52 @@
+<?php
+
+namespace App\Repository;
+
+use App\Entity\ItemOnCart;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
+
+/**
+ * @extends ServiceEntityRepository<ItemOnCart>
+ */
+class ItemOnCartRepository extends ServiceEntityRepository
+{
+    public function __construct(ManagerRegistry $registry)
+    {
+        parent::__construct($registry, ItemOnCart::class);
+    }
+
+
+    public function findByCart(int $cartId): array
+    {
+        return $this->createQueryBuilder('i')
+            ->andWhere('i.cart = :cartId')
+            ->setParameter('cartId', $cartId)
+            ->getQuery()
+            ->getResult();
+    }
+//    /**
+//     * @return ItemOnCart[] Returns an array of ItemOnCart objects
+//     */
+//    public function findByExampleField($value): array
+//    {
+//        return $this->createQueryBuilder('i')
+//            ->andWhere('i.exampleField = :val')
+//            ->setParameter('val', $value)
+//            ->orderBy('i.id', 'ASC')
+//            ->setMaxResults(10)
+//            ->getQuery()
+//            ->getResult()
+//        ;
+//    }
+
+//    public function findOneBySomeField($value): ?ItemOnCart
+//    {
+//        return $this->createQueryBuilder('i')
+//            ->andWhere('i.exampleField = :val')
+//            ->setParameter('val', $value)
+//            ->getQuery()
+//            ->getOneOrNullResult()
+//        ;
+//    }
+}
